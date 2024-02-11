@@ -96,3 +96,24 @@ def create_hangman(incorrect):
         """
     ]
     print(stages[incorrect])
+
+incorrect_guesses = 0 
+total_guesses = 0
+all_letters_guessed = []
+
+while incorrect_guesses < 6:
+    print("\nGuessed letters: ", " ".join(all_letters_guessed))
+    guessedLetter = input("Please guess a letter: ").lower()
+    
+    if len(guessedLetter) != 1 or not guessedLetter.isalpha():
+        print("Please enter a valid letter.")
+        continue
+    
+    if guessedLetter in all_letters_guessed:
+        print("You have already guessed that letter.")
+        continue
+    
+    all_letters_guessed.append(guessedLetter)
+
+
+
