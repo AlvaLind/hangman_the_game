@@ -1,7 +1,7 @@
 import random 
 
 print("Welcome! The theme of this game is countries. Let's play hangman!")
-print("......................................................")
+print(".......................................................................")
 
 gameWords = ["australia", "sweden", "finland", "norway", "denmark", "poland", "ireland", "spain", "italy", "madagascar", "fiji", "portugal", "greece", "albania", "ukrain", "switzerland", "cyprus", "argentina", "mauritius", "canada", "united states", "mexico", "morocco", "brazil", "chile", "philippines", "new zealand", "qatar", "estonia", "france", "singapore", "germany", "guatemala", "turkey", "jordan", "syria", "japan", "china", "russia"]
 
@@ -97,6 +97,23 @@ def create_hangman(incorrect):
     ]
     print(stages[incorrect])
 
+def printWord(guesses):
+    """
+    Takes list of all letters guessed so far and checks if they are in the hidden word. 
+    Prints result to the terminal, and returns number of correct letters in the word. 
+    """
+    correctLetters = 0
+    for char in pickWord:
+        if char == ' ':
+            print(" ", end=" ")
+        elif char in guesses:
+            print(char, end=" ")
+            correctLetters += 1
+        else:
+            print("_", end=" ")
+    print(" ")
+    return correctLetters 
+
 length_of_word = len(pickWord.replace(" ", ""))   #Remove any spaces from pickWord and then calculate the number of letters
 incorrect_guesses = 0 
 letter_occurances = 0
@@ -116,12 +133,20 @@ while incorrect_guesses < 6:
     
     all_letters_guessed.append(guessedLetter)
 
-
     if guessedLetter in pickWord:
         letter_occurances += pickWord.count(guessedLetter)
         create_hangman(incorrect_guesses)
+        correct_letters = printWord(all_letters_guessed)
+        
+        if correct_letters == length_of_word:
+            print("\nCongratulations! You've guessed the word:", pickWord)
+            break
     else:
         incorrect_guesses += 1
         create_hangman(incorrect_guesses)
+        printWord(all_letters_guessed)
+
+if incorrect_guesses == 6:
+    print("You're out of guesses! The correct country was:", pickWord)
 
 
