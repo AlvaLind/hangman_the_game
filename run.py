@@ -97,23 +97,31 @@ def create_hangman(incorrect):
     ]
     print(stages[incorrect])
 
+length_of_word = len(pickWord.replace(" ", ""))   #Remove any spaces from pickWord and then calculate the number of letters
 incorrect_guesses = 0 
-total_guesses = 0
+letter_occurances = 0
 all_letters_guessed = []
 
 while incorrect_guesses < 6:
     print("\nGuessed letters: ", " ".join(all_letters_guessed))
     guessedLetter = input("Please guess a letter: ").lower()
     
-    if len(guessedLetter) != 1 or not guessedLetter.isalpha():
+    if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a letter
         print("Please enter a valid letter.")
         continue
     
     if guessedLetter in all_letters_guessed:
-        print("You have already guessed that letter.")
+        print("You have already guessed that letter.")  #Check that the guess is a new letter
         continue
     
     all_letters_guessed.append(guessedLetter)
 
+
+    if guessedLetter in pickWord:
+        letter_occurances += pickWord.count(guessedLetter)
+        create_hangman(incorrect_guesses)
+    else:
+        incorrect_guesses += 1
+        create_hangman(incorrect_guesses)
 
 
