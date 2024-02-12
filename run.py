@@ -1,7 +1,17 @@
 import random 
 
+def get_player_name():
+    """
+    Asks the player to input their name.
+    """
+    player_name = input("Please enter player name:")
+    return player_name
+
+player_name = get_player_name()
+
 print(" ")
-print("Welcome! The theme of this game is countries. Let's play hangman!")
+print("Welcome", player_name, end = "! ")
+print("The theme of this game is countries. Let's play hangman!")
 print("Begin the game below or enter 1 at any time for instructions.")
 print(".......................................................................")
 print(" ")
@@ -33,7 +43,7 @@ def display_hidden_word(pickWord):
 
 pickWord = random.choice(gameWords)
 pickWord = pickWord.lower() # convert to lowercase to make case-insensitive
-print("your word is: ", end=" ")
+print("Your word is: ", end=" ")
 display_hidden_word(pickWord)
 print(" ")
 
@@ -165,7 +175,8 @@ while incorrect_guesses < 7:
         correct_letters = printWord(all_letters_guessed)
         
         if correct_letters == length_of_word:
-            print("\nCongratulations! You've guessed the word:", pickWord)
+            print("\nCongratulations", player_name, end = "! ")
+            print("You've guessed correctly, the word was:", pickWord)
             break
     else:
         incorrect_guesses += 1
@@ -173,6 +184,7 @@ while incorrect_guesses < 7:
         printWord(all_letters_guessed)
 
 if incorrect_guesses == 7:
-    print("You're out of guesses! The correct country was:", pickWord)
+    print("OH NO", player_name, end = "! ")
+    print("You're out of guesses :( \nThe correct country was:", pickWord)
 
 
