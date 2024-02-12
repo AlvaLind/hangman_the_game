@@ -4,17 +4,8 @@ def get_player_name():
     """
     Asks the player to input their name.
     """
-    player_name = input("Please enter player name:")
+    player_name = input("Please enter your name:")
     return player_name
-
-player_name = get_player_name()
-
-print(" ")
-print("Welcome", player_name, end = "! ")
-print("The theme of this game is countries. Let's play hangman!")
-print("Begin the game below or enter 1 at any time for instructions.")
-print(".......................................................................")
-print(" ")
 
 
 def instructions():
@@ -29,7 +20,6 @@ def instructions():
     print("Each guess must only be a single letter.")
     print("Good luck! Begin or continue your game below.")
 
-gameWords = ["australia", "sweden", "finland", "norway", "denmark", "poland", "ireland", "spain", "italy", "madagascar", "fiji", "portugal", "greece", "albania", "ukrain", "switzerland", "cyprus", "argentina", "mauritius", "canada", "united states", "mexico", "morocco", "brazil", "chile", "philippines", "new zealand", "qatar", "estonia", "france", "singapore", "germany", "guatemala", "turkey", "jordan", "syria", "japan", "china", "russia"]
 
 def display_hidden_word(pickWord):
     """
@@ -41,11 +31,6 @@ def display_hidden_word(pickWord):
         else:
             print("_", end=" ")
 
-pickWord = random.choice(gameWords)
-pickWord = pickWord.lower() # convert to lowercase to make case-insensitive
-print("Your word is: ", end=" ")
-display_hidden_word(pickWord)
-print(" ")
 
 def create_hangman(incorrect):
     """
@@ -127,6 +112,7 @@ def create_hangman(incorrect):
     ]
     print(stages[incorrect])
 
+
 def printWord(guesses):
     """
     Takes list of all letters guessed so far and checks if they are in the hidden word. 
@@ -144,47 +130,74 @@ def printWord(guesses):
     print(" ")
     return correctLetters 
 
-length_of_word = len(pickWord.replace(" ", ""))   #Remove any spaces from pickWord and then calculate the number of letters
-incorrect_guesses = 0 
-letter_occurances = 0
-all_letters_guessed = []
 
-while incorrect_guesses < 7:
-    print("\nGuessed letters: ", " ".join(all_letters_guessed))
-    guessedLetter = input("Please guess a letter: ").lower()
-    
-    if guessedLetter == '1':
-        instructions()
-        create_hangman(incorrect_guesses)
-        correct_letters = printWord(all_letters_guessed)
-        continue
+player_name = get_player_name()
+print(" ")
+print("Welcome", player_name, end = "! ")
+print("The theme of this game is countries. Let's play hangman!")
+print("Begin the game below or enter 1 at any time for instructions.")
+print(".......................................................................")
+print(" ")
 
-    if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a single letter
-        print("Please enter a valid letter.")
-        continue
-    
-    if guessedLetter in all_letters_guessed:
-        print("You have already guessed that letter.")  #Check that the guess is a new letter
-        continue
-    
-    all_letters_guessed.append(guessedLetter)
 
-    if guessedLetter in pickWord:
-        letter_occurances += pickWord.count(guessedLetter)
-        create_hangman(incorrect_guesses)
-        correct_letters = printWord(all_letters_guessed)
+def play_hangman(pickWord):
+    """
+    Function to play the game.
+    """
+    print("Your word is: ", end=" ")
+    display_hidden_word(pickWord)
+    print(" ")
+
+    length_of_word = len(pickWord.replace(" ", ""))   #Remove any spaces from pickWord and then calculate the number of letters
+    incorrect_guesses = 0 
+    letter_occurances = 0
+    all_letters_guessed = []
+
+    while incorrect_guesses < 7:
+        print("\nGuessed letters: ", " ".join(all_letters_guessed))
+        guessedLetter = input("Please guess a letter: ").lower()
         
-        if correct_letters == length_of_word:
-            print("\nCongratulations", player_name, end = "! ")
-            print("You've guessed correctly, the word was:", pickWord)
-            break
-    else:
-        incorrect_guesses += 1
-        create_hangman(incorrect_guesses)
-        printWord(all_letters_guessed)
+        if guessedLetter == '1':
+            instructions()
+            create_hangman(incorrect_guesses)
+            correct_letters = printWord(all_letters_guessed)
+            continue
 
-if incorrect_guesses == 7:
-    print("OH NO", player_name, end = "! ")
-    print("You're out of guesses :( \nThe correct country was:", pickWord)
+        if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a single letter
+            print("Please enter a valid letter.")
+            continue
+        
+        if guessedLetter in all_letters_guessed:
+            print("You have already guessed that letter.")  #Check that the guess is a new letter
+            continue
+        
+        all_letters_guessed.append(guessedLetter)
 
+        if guessedLetter in pickWord:
+            letter_occurances += pickWord.count(guessedLetter)
+            create_hangman(incorrect_guesses)
+            correct_letters = printWord(all_letters_guessed)
+            
+            if correct_letters == length_of_word:
+                print("\nCongratulations", player_name, end = "! ")
+                print("You've guessed correctly, the word was:", pickWord)
+                break
+        else:
+            incorrect_guesses += 1
+            create_hangman(incorrect_guesses)
+            printWord(all_letters_guessed)
 
+    if incorrect_guesses == 7:
+        print("OH NO", player_name, end = "! ")
+        print("You're out of guesses :( \nThe correct country was:", pickWord)
+
+while True:
+    
+    gameWords = ["australia", "sweden", "finland", "norway", "denmark", "poland", "ireland", "spain", "italy", "madagascar", "fiji", "portugal", "greece", "albania", "ukrain", "switzerland", "cyprus", "argentina", "mauritius", "canada", "united states", "mexico", "morocco", "brazil", "chile", "philippines", "new zealand", "qatar", "estonia", "france", "singapore", "germany", "guatemala", "turkey", "jordan", "syria", "japan", "china", "russia"]
+    pickWord = random.choice(gameWords)
+    pickWord = pickWord.lower() # convert to lowercase to make case-insensitive
+    play_hangman(pickWord)
+    play_again = input("Do you want to play again? (yes/no): ").lower()
+    if play_again != "yes":
+        print("No problem, thank you for playing! Hope to see you again soon :)")
+        break
