@@ -4,7 +4,7 @@ def get_player_name():
     """
     Asks the player to input their name.
     """
-    player_name = input("Please enter your name:")
+    player_name = input("Before the game can start, please write your name and then click enter: ")
     return player_name
 
 
@@ -17,7 +17,7 @@ def instructions():
     print("--------------------")
     print("Guess the letters to reveal the hidden country before the man gets hanged.")
     print("You can guess as many times as you want but you only have 7 incorrect guesses until you loose. So use your guesses carefully!")
-    print("Each guess must only be a single letter.")
+    print("Each guess must only be a single letter and you submit your guess by clicking enter.")
     print("Good luck! Begin or continue your game below.")
 
 
@@ -134,8 +134,11 @@ def printWord(guesses):
 player_name = get_player_name()
 print(" ")
 print("Welcome", player_name, end = "! ")
-print("The theme of this game is countries. Let's play hangman!")
-print("Begin the game below or enter 1 at any time for instructions.")
+print("The theme of this game is countries.")
+print("You submit the guessed letter by clicking enter.")
+print("Begin the game below or press 1 at any time for more instructions.")
+print(" ")
+print("Let's play hangman! :D")
 print(".......................................................................")
 print(" ")
 
