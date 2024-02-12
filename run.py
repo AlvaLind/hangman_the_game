@@ -1,7 +1,23 @@
 import random 
 
+print(" ")
 print("Welcome! The theme of this game is countries. Let's play hangman!")
+print("Begin the game below or enter 1 at any time for instructions.")
 print(".......................................................................")
+print(" ")
+
+
+def instructions():
+    """
+    Prints the game Instructions 
+    """
+    print("--------------------")
+    print("Hangman Instructions")
+    print("--------------------")
+    print("Guess the letters to reveal the hidden country before your character is hung")
+    print("You have 6 Incorrect guesses until you lose. So use your guesses carefully")
+    print("Each guess must only be a single letter.")
+    print("Good luck! Begin or continue your game below.")
 
 gameWords = ["australia", "sweden", "finland", "norway", "denmark", "poland", "ireland", "spain", "italy", "madagascar", "fiji", "portugal", "greece", "albania", "ukrain", "switzerland", "cyprus", "argentina", "mauritius", "canada", "united states", "mexico", "morocco", "brazil", "chile", "philippines", "new zealand", "qatar", "estonia", "france", "singapore", "germany", "guatemala", "turkey", "jordan", "syria", "japan", "china", "russia"]
 
@@ -17,7 +33,9 @@ def display_hidden_word(pickWord):
 
 pickWord = random.choice(gameWords)
 pickWord = pickWord.lower() # convert to lowercase to make case-insensitive
+print("your word is: ", end=" ")
 display_hidden_word(pickWord)
+print(" ")
 
 def create_hangman(incorrect):
     """
@@ -32,7 +50,7 @@ def create_hangman(incorrect):
         |    
         |    
         |
-        --------
+        ---------
         """,
         """
         +-----+
@@ -42,7 +60,7 @@ def create_hangman(incorrect):
         |    
         |    
         |
-        --------
+        ---------
         """,
         """
         +-----+
@@ -52,37 +70,37 @@ def create_hangman(incorrect):
         |     
         |    
         |
-        --------
+        ---------
         """,
         """
         +-----+
         |     |
-        |     O
-        |    /|
+        |    \\O
+        |     |
         |     
         |    
         |
-        --------
+        ---------
         """,
         """
         +-----+
         |     |
-        |     O
-        |    /|\\
+        |    \\O/
+        |     |
         |     
         |    
         |
-        --------
+        ---------
         """,
         """
         +-----+
         |     |
-        |     O
-        |    /|\\
+        |    \\O/
+        |     |
         |    / 
         |    
         |
-        --------
+        ---------
         """,
         """
         +-----+
@@ -92,7 +110,7 @@ def create_hangman(incorrect):
         |    / \\
         |    
         |
-        --------
+        ---------
         """
     ]
     print(stages[incorrect])
@@ -123,7 +141,13 @@ while incorrect_guesses < 6:
     print("\nGuessed letters: ", " ".join(all_letters_guessed))
     guessedLetter = input("Please guess a letter: ").lower()
     
-    if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a letter
+    if guessedLetter == '1':
+        instructions()
+        create_hangman(incorrect_guesses)
+        correct_letters = printWord(all_letters_guessed)
+        continue
+
+    if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a single letter
         print("Please enter a valid letter.")
         continue
     
