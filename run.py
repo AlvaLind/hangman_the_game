@@ -14,8 +14,8 @@ def instructions():
     print("--------------------")
     print("Hangman Instructions")
     print("--------------------")
-    print("Guess the letters to reveal the hidden country before your character is hung")
-    print("You have 6 Incorrect guesses until you lose. So use your guesses carefully")
+    print("Guess the letters to reveal the hidden country before the man gets hanged.")
+    print("You can guess as many times as you want but you only have 7 incorrect guesses until you loose. So use your guesses carefully!")
     print("Each guess must only be a single letter.")
     print("Good luck! Begin or continue your game below.")
 
@@ -46,71 +46,73 @@ def create_hangman(incorrect):
         +-----+
         |     |
         |     
-        |    
-        |    
-        |    
-        |
-        ---------
+        |      
+        |    ___
+        |   |   |
+        |___|___|_____
         """,
         """
         +-----+
         |     |
         |     O
-        |    
-        |    
-        |    
-        |
-        ---------
+        |      
+        |    ___
+        |   |   |
+        |___|___|_____
         """,
         """
         +-----+
         |     |
         |     O
         |     |
-        |     
-        |    
-        |
-        ---------
+        |    ___
+        |   |   |
+        |___|___|_____
         """,
         """
         +-----+
         |     |
         |    \\O
-        |     |
-        |     
-        |    
-        |
-        ---------
+        |     | 
+        |    ___
+        |   |   |
+        |___|___|_____
         """,
         """
         +-----+
         |     |
         |    \\O/
         |     |
-        |     
-        |    
-        |
-        ---------
+        |    ___
+        |   |   |
+        |___|___|_____
         """,
         """
         +-----+
         |     |
         |    \\O/
         |     |
-        |    / 
-        |    
-        |
-        ---------
+        |    /__
+        |   |   |
+        |___|___|_____
         """,
         """
         +-----+
+        |     |
+        |    \\O/
+        |     |
+        |    /_\\
+        |   |   |
+        |___|___|_____
+        """,
+        """
+        +-----+
+        |     |
         |     |
         |     O
         |    /|\\
-        |    / \\
-        |    
-        |
-        ---------
+        |    / \\    
+        |_____________
         """
     ]
     print(stages[incorrect])
@@ -137,7 +139,7 @@ incorrect_guesses = 0
 letter_occurances = 0
 all_letters_guessed = []
 
-while incorrect_guesses < 6:
+while incorrect_guesses < 7:
     print("\nGuessed letters: ", " ".join(all_letters_guessed))
     guessedLetter = input("Please guess a letter: ").lower()
     
@@ -170,7 +172,7 @@ while incorrect_guesses < 6:
         create_hangman(incorrect_guesses)
         printWord(all_letters_guessed)
 
-if incorrect_guesses == 6:
+if incorrect_guesses == 7:
     print("You're out of guesses! The correct country was:", pickWord)
 
 
