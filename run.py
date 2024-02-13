@@ -20,8 +20,9 @@ def instructions():
     print("Hangman Instructions")
     print("--------------------")
     print("Guess the letters to reveal the hidden country before the man gets hanged.")
-    print("You can guess as many times as you want but you only have 7 incorrect guesses until you loose. So use your guesses carefully!")
-    print("Each guess must only be a single letter and you submit your guess by clicking enter.")
+    print("You can guess as many times as you want but you only have 7 incorrect guesses")
+    print("until you loose. So use your guesses carefully!")
+    print("Each guess must only be a single letter.")
     print("Good luck! Begin or continue your game below.")
 
 
@@ -104,7 +105,7 @@ def create_hangman(incorrect):
         |   |   |
         |___|___|_____ 
 
-        One more incorrect guess and you're out of lives!
+One more incorrect guess and you're out of lives!
         """,
         """
         +-----+
@@ -192,7 +193,7 @@ def play_hangman(pickWord):
             
             if correct_letters == length_of_word:
                 print("\nCongratulations", player_name, end = "! ")
-                print("You've guessed correctly, the word was:", pickWord)
+                print("You've guessed correctly, the country was:", pickWord)
                 break
         else:
             incorrect_guesses += 1
@@ -200,7 +201,7 @@ def play_hangman(pickWord):
             printWord(all_letters_guessed)
 
     if incorrect_guesses == 7:
-        print("OH NO", player_name, end = "! ")
+        print("\nOH NO", player_name, end = "! ")
         print("You're out of guesses \nThe correct country was:", pickWord)
 
 while True:
@@ -209,7 +210,7 @@ while True:
     pickWord = random.choice(gameWords)
     pickWord = pickWord.lower() # convert to lowercase to make case-insensitive
     play_hangman(pickWord)
-    play_again = input("Do you want to play again? (yes/no): \n").lower()
+    play_again = input("\nDo you want to play again? (yes/no): \n").lower()
     if play_again != "yes":
         print("No problem, thank you for playing! Hope to see you again soon")
         break
