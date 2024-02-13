@@ -5,7 +5,7 @@ def get_player_name():
     Asks the player to input their name.
     """
     while True:
-        player_name = input("Please enter your name: ")
+        player_name = input("Please enter your name: \n")
         if len(player_name) <= 15:
             return player_name
         else:
@@ -167,7 +167,7 @@ def play_hangman(pickWord):
 
     while incorrect_guesses < 7:
         print("\nGuessed letters: ", " ".join(all_letters_guessed))
-        guessedLetter = input("Please guess a letter: ").lower()
+        guessedLetter = input("Please guess a letter: \n").lower()
         
         if guessedLetter == '1':
             instructions()
@@ -209,7 +209,7 @@ while True:
     pickWord = random.choice(gameWords)
     pickWord = pickWord.lower() # convert to lowercase to make case-insensitive
     play_hangman(pickWord)
-    play_again = input("Do you want to play again? (yes/no): ").lower()
+    play_again = input("Do you want to play again? (yes/no): \n").lower()
     if play_again != "yes":
         print("No problem, thank you for playing! Hope to see you again soon")
         break
