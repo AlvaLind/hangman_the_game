@@ -4,8 +4,12 @@ def get_player_name():
     """
     Asks the player to input their name.
     """
-    player_name = input("Before the game can start, please write your name and then click enter: ")
-    return player_name
+    while True:
+        player_name = input("Please enter your name: ")
+        if len(player_name) <= 15:
+            return player_name
+        else:
+            print("Name can not be longer than 15 characters")
 
 
 def instructions():
@@ -98,7 +102,9 @@ def create_hangman(incorrect):
         |     |
         |    /_\\
         |   |   |
-        |___|___|_____
+        |___|___|_____ 
+
+        One more incorrect guess and you're out of lives!
         """,
         """
         +-----+
@@ -130,15 +136,18 @@ def printWord(guesses):
     print(" ")
     return correctLetters 
 
+print("Welcome to Hangman The Game!")
+print(" ")
 
 player_name = get_player_name()
+
 print(" ")
-print("Welcome", player_name, end = "! ")
+print("Hello", player_name, end = "! ")
 print("The theme of this game is countries.")
 print("You submit the guessed letter by clicking enter.")
 print("Begin the game below or press 1 at any time for more instructions.")
 print(" ")
-print("Let's play hangman! :D")
+print("Let's play hangman!")
 print(".......................................................................")
 print(" ")
 
@@ -192,7 +201,7 @@ def play_hangman(pickWord):
 
     if incorrect_guesses == 7:
         print("OH NO", player_name, end = "! ")
-        print("You're out of guesses :( \nThe correct country was:", pickWord)
+        print("You're out of guesses \nThe correct country was:", pickWord)
 
 while True:
     
@@ -202,5 +211,5 @@ while True:
     play_hangman(pickWord)
     play_again = input("Do you want to play again? (yes/no): ").lower()
     if play_again != "yes":
-        print("No problem, thank you for playing! Hope to see you again soon :)")
+        print("No problem, thank you for playing! Hope to see you again soon")
         break
