@@ -11,6 +11,39 @@ def get_player_name():
         else:
             print("Name can not be longer than 15 characters")
 
+def select_theme():
+    """
+    Asks the player to select a theme.
+    """
+    print(" ")
+    print("Select a game theme: ")
+    print("..........................")
+    print("1. Countries")
+    print("2. Cities")
+    print("3. Sports")
+    print("..........................")
+    while True:
+        theme_choice = input("Enter the number of your chosen theme: \n")
+        if theme_choice in ["1", "2", "3"]:
+            return theme_choice
+        else:
+            print("Invalid choice. Please enter a number between 1 and 3.")
+
+def get_word(theme_choice):
+    """
+    Returns a randomly selected word based on the chosen theme.
+    """
+    if theme_choice == "1":
+        theme_words = ["australia", "sweden", "finland", "norway", "denmark", "poland", "ireland", "spain", "italy", "madagascar", "fiji", "portugal", "greece", "albania", "ukrain", "switzerland", "cyprus", "argentina", "mauritius", "canada", "united states", "mexico", "morocco", "brazil", "chile", "philippines", "new zealand", "qatar", "estonia", "france", "singapore", "germany", "guatemala", "turkey", "jordan", "syria", "japan", "china", "russia"]
+        theme = "countries"
+    elif theme_choice == "2":
+        theme_words = ["london", "paris", "stockholm", "melbourne", "tokyo", "new york", "rome", "sydney", "beijing", "moscow", "cairo", "berlin", "amsterdam", "istanbul", "mumbai", "rio de janeiro", "dubai", "los angeles", "athens", "toronto", "singapore", "barcelona", "helsinki", "oslo"]
+        theme = "cities"
+    elif theme_choice == "3":
+        theme_words = ["football", "basketball", "tennis", "soccer", "baseball", "volleyball", "golf", "rugby", "cricket", "hockey", "swimming", "cycling", "boxing", "skiing", "surfing", "running", "wrestling", "badminton", "table tennis", "rowing"]
+        theme = "sports"
+    return random.choice(theme_words), theme
+    
 
 def instructions():
     """
@@ -105,7 +138,8 @@ def create_hangman(incorrect):
         |   |   |
         |___|___|_____ 
 
-One more incorrect guess and you're out of lives!
+    One more incorrect guess 
+    and you're out of lives!
         """,
         """
         +-----+
@@ -139,24 +173,20 @@ def printWord(guesses):
 
 print("Welcome to Hangman The Game!")
 print(" ")
+print("Begin the game below or enter 1 at any time for instructions.")
+print(" ")
 
 player_name = get_player_name()
 
 print(" ")
 print("Hello", player_name, end = "! ")
-print("The theme of this game is countries.")
-print("You submit the guessed letter by clicking enter.")
-print("Begin the game below or press 1 at any time for more instructions.")
-print(" ")
-print("Let's play hangman!")
-print(".......................................................................")
-print(" ")
 
 
 def play_hangman(pickWord):
     """
     Function to play the game.
     """
+    
     print("Your word is: ", end=" ")
     display_hidden_word(pickWord)
     print(" ")
@@ -193,7 +223,7 @@ def play_hangman(pickWord):
             
             if correct_letters == length_of_word:
                 print("\nCongratulations", player_name, end = "! ")
-                print("You've guessed correctly, the country was:", pickWord)
+                print("You've guessed correctly, the word was:", pickWord)
                 break
         else:
             incorrect_guesses += 1
@@ -202,15 +232,24 @@ def play_hangman(pickWord):
 
     if incorrect_guesses == 7:
         print("\nOH NO", player_name, end = "! ")
-        print("You're out of guesses \nThe correct country was:", pickWord)
+        print("You're out of guesses \nThe correct word was:", pickWord)
 
 while True:
-    
-    gameWords = ["australia", "sweden", "finland", "norway", "denmark", "poland", "ireland", "spain", "italy", "madagascar", "fiji", "portugal", "greece", "albania", "ukrain", "switzerland", "cyprus", "argentina", "mauritius", "canada", "united states", "mexico", "morocco", "brazil", "chile", "philippines", "new zealand", "qatar", "estonia", "france", "singapore", "germany", "guatemala", "turkey", "jordan", "syria", "japan", "china", "russia"]
-    pickWord = random.choice(gameWords)
-    pickWord = pickWord.lower() # convert to lowercase to make case-insensitive
+    theme_choice = select_theme()
+    pickWord, theme = get_word(theme_choice)
+    print(" ")
+    print("The theme of this game is", theme)
+    print("Let's play hangman!")
+    print(".......................................................................")
+    print(" ")
     play_hangman(pickWord)
-    play_again = input("\nDo you want to play again? (yes/no): \n").lower()
-    if play_again != "yes":
-        print("No problem, thank you for playing! Hope to see you again soon")
-        break
+    while True:
+        play_again = input("\nDo you want to play again? (yes/no): \n").lower()
+        print(" ")
+        if play_again == "yes" or play_again == "y":
+            break
+        elif play_again == "no" or play_again == "n":
+            print("No problem, thank you for playing! Hope to see you again soon")
+            exit()
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
