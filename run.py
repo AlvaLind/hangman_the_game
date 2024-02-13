@@ -26,6 +26,8 @@ def select_theme():
         theme_choice = input("Enter the number of your chosen theme: \n")
         if theme_choice in ["1", "2", "3"]:
             return theme_choice
+        elif theme_choice == "!":
+            instructions()
         else:
             print("Invalid choice. Please enter a number between 1 and 3.")
 
@@ -57,6 +59,7 @@ def instructions():
     print("until you loose. So use your guesses carefully!")
     print("Each guess must only be a single letter.")
     print("Good luck! Begin or continue your game below.")
+    print("--------------------")
 
 
 def display_hidden_word(pickWord):
@@ -154,7 +157,7 @@ def create_hangman(incorrect):
     print(stages[incorrect])
 
 
-def printWord(guesses):
+def printWord(guesses, pickWord):
     """
     Takes list of all letters guessed so far and checks if they are in the hidden word. 
     Prints result to the terminal, and returns number of correct letters in the word. 
@@ -173,13 +176,12 @@ def printWord(guesses):
 
 print("Welcome to Hangman The Game!")
 print(" ")
-print("Begin the game below or enter 1 at any time for instructions.")
-print(" ")
 
 player_name = get_player_name()
 
 print(" ")
 print("Hello", player_name, end = "! ")
+print("\nEnter '!' at anytime for intructions.")
 
 
 def play_hangman(pickWord):
@@ -200,10 +202,10 @@ def play_hangman(pickWord):
         print("\nGuessed letters: ", " ".join(all_letters_guessed))
         guessedLetter = input("Please guess a letter: \n").lower()
         
-        if guessedLetter == '1':
+        if guessedLetter == '!':
             instructions()
             create_hangman(incorrect_guesses)
-            correct_letters = printWord(all_letters_guessed)
+            correct_letters = printWord(all_letters_guessed, pickWord)
             continue
 
         if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a single letter
@@ -219,7 +221,7 @@ def play_hangman(pickWord):
         if guessedLetter in pickWord:
             letter_occurances += pickWord.count(guessedLetter)
             create_hangman(incorrect_guesses)
-            correct_letters = printWord(all_letters_guessed)
+            correct_letters = printWord(all_letters_guessed, pickWord)
             
             if correct_letters == length_of_word:
                 print("\nCongratulations", player_name, end = "! ")
@@ -228,7 +230,7 @@ def play_hangman(pickWord):
         else:
             incorrect_guesses += 1
             create_hangman(incorrect_guesses)
-            printWord(all_letters_guessed)
+            printWord(all_letters_guessed, pickWord)
 
     if incorrect_guesses == 7:
         print("\nOH NO", player_name, end = "! ")
