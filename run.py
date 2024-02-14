@@ -21,12 +21,12 @@ def select_theme():
     """Asks the player to select a theme."""
     print(
         f"""
-    Select a game theme: 
-    ..........................
-    1. Countries
-    2. Cities
-    3. Sports
-    ..........................
+Select a game theme: 
+..........................
+1. Countries
+2. Cities
+3. Sports
+..........................
         """
     )
     while True:
@@ -38,7 +38,14 @@ def select_theme():
         elif theme_choice == "!":
             instructions()
         else:
-            print(
+            if len(theme_choice) != 1:
+                print(
+                    f"""
+{theme_choice} has to many characters, please enter only one number
+between 1 and 3 or enter '!' for instructions.
+                    """)
+            else:
+                print(
                 f"""
 {theme_choice} is not a valid choice. 
 Please enter a number between 1 and 3 or enter '!' for instructions.
@@ -213,11 +220,24 @@ def play_hangman(pickWord):
             continue
 
         if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a single letter
-            print("Please enter a valid letter.")
+            if len(guessedLetter) != 1:
+                print(
+                    f"""
+{guessedLetter} has to many characters, please enter only one character. """
+                )
+            elif guessedLetter.isdigit():  # Check if the input is a number
+                print("\n", guessedLetter,"is a number. Please enter a letter.")
+            else:
+                print(
+                    "\n", guessedLetter,"is not a letter. Please enter a letter."
+                    )
             continue
         
         if guessedLetter in all_letters_guessed:
-            print("You have already guessed that letter.")  #Check that the guess is a new letter
+            print(
+                f"""
+You have already guessed {guessedLetter}, please guess another letter. """
+                )  #Check that the guess is a new letter
             continue
         
         all_letters_guessed.append(guessedLetter)
@@ -226,10 +246,13 @@ def play_hangman(pickWord):
             clear_terminal()
             letter_occurances += pickWord.count(guessedLetter)
             create_hangman(incorrect_guesses)
-            print("You guessed correctly. Keep it up!\n")
+            
             correct_letters = printWord(all_letters_guessed, pickWord)
             
-            if correct_letters == length_of_word:
+            if correct_letters < length_of_word:
+                print("\nYou guessed correctly. Keep it up!")
+
+            elif correct_letters == length_of_word:
                 print("\nCongratulations", player_name, end = "! ")
                 print("You've guessed correctly, the word was:", pickWord)
                 break
@@ -238,14 +261,14 @@ def play_hangman(pickWord):
             incorrect_guesses += 1
             create_hangman(incorrect_guesses)
             if incorrect_guesses == 6:
-                print("One more incorrect guess and you're out of lives!\n")
                 printWord(all_letters_guessed, pickWord)
+                print("\nOne more incorrect guess and you're out of lives!")
             elif incorrect_guesses == 7:
                 print("\nOH NO", player_name, end = ", ")
                 print("You're out of guesses! \nThe correct word was:", pickWord)
             else:
-                print("Oops, incorrect guess. Keep guessing\n")
                 printWord(all_letters_guessed, pickWord)
+                print("\nOops, incorrect guess. Keep guessing")
 
 while True:
     theme_choice = select_theme()
