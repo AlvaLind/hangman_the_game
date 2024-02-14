@@ -16,16 +16,18 @@ def select_theme():
     """Asks the player to select a theme."""
     print(
         f"""
-        Select a game theme: 
-        ..........................
-        1. Countries
-        2. Cities
-        3. Sports
-        ..........................
+    Select a game theme: 
+    ..........................
+    1. Countries
+    2. Cities
+    3. Sports
+    ..........................
         """
     )
     while True:
-        theme_choice = input("Please enter the number of your chosen theme:\n")
+        theme_choice = input(
+            "Please enter the number of your chosen theme:\n"
+            ).strip()
         if theme_choice in ["1", "2", "3"]:
             return theme_choice
         elif theme_choice == "!":
@@ -188,10 +190,7 @@ print("\nEnter '!' at anytime for intructions.")
 
 
 def play_hangman(pickWord):
-    """
-    Function to play the game.
-    """
-    
+    """Function to play the game."""
     print("Your word is: ", end=" ")
     display_hidden_word(pickWord)
     print(" ")
@@ -203,7 +202,7 @@ def play_hangman(pickWord):
 
     while incorrect_guesses < 7:
         print("\nGuessed letters: ", " ".join(all_letters_guessed))
-        guessedLetter = input("Please guess a letter: \n").lower()
+        guessedLetter = input("Please guess a letter: \n").strip().lower()
         
         if guessedLetter == '!':
             instructions()
@@ -252,7 +251,7 @@ Let's play hangman!
     )
     play_hangman(pickWord)
     while True:
-        play_again = input("\nDo you want to play again? (yes/no): \n").lower()
+        play_again = input("\nDo you want to play again? (yes/no): \n").strip().lower()
         print(" ")
         if play_again == "yes" or play_again == "y":
             break
