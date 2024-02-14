@@ -1,35 +1,43 @@
 import random 
 
 def get_player_name():
-    """
-    Asks the player to input their name.
-    """
+    """Asks the player to input their name."""
     while True:
-        player_name = input("Please enter your name: \n")
-        if len(player_name) <= 15:
+        player_name = input("Please enter player name: \n").strip()
+        if player_name and len(player_name) <= 15:
             return player_name
+        elif not player_name:
+            print("Name can not be empty")
         else:
             print("Name can not be longer than 15 characters")
 
+
 def select_theme():
-    """
-    Asks the player to select a theme.
-    """
-    print(" ")
-    print("Select a game theme: ")
-    print("..........................")
-    print("1. Countries")
-    print("2. Cities")
-    print("3. Sports")
-    print("..........................")
+    """Asks the player to select a theme."""
+    print(
+        f"""
+        Select a game theme: 
+        ..........................
+        1. Countries
+        2. Cities
+        3. Sports
+        ..........................
+        """
+    )
     while True:
-        theme_choice = input("Enter the number of your chosen theme: \n")
+        theme_choice = input("Please enter the number of your chosen theme:\n")
         if theme_choice in ["1", "2", "3"]:
             return theme_choice
         elif theme_choice == "!":
             instructions()
         else:
-            print("Invalid choice. Please enter a number between 1 and 3.")
+            print(
+                f"""
+{theme_choice} is not a valid choice. 
+Please enter a number between 1 and 3 or enter '!' for instructions.
+                """
+            )
+
 
 def get_word(theme_choice):
     """
@@ -44,8 +52,7 @@ def get_word(theme_choice):
     elif theme_choice == "3":
         theme_words = ["football", "basketball", "tennis", "soccer", "baseball", "volleyball", "golf", "rugby", "cricket", "hockey", "swimming", "cycling", "boxing", "skiing", "surfing", "running", "wrestling", "badminton", "table tennis", "rowing"]
         theme = "sports"
-    return random.choice(theme_words), theme
-    
+    return random.choice(theme_words), theme   
 
 def instructions():
     """
@@ -61,7 +68,6 @@ def instructions():
     print("Good luck! Begin or continue your game below.")
     print("--------------------")
 
-
 def display_hidden_word(pickWord):
     """
     Creates an underscore for every letter and a space for the spaces between words where required.
@@ -72,11 +78,8 @@ def display_hidden_word(pickWord):
         else:
             print("_", end=" ")
 
-
 def create_hangman(incorrect):
-    """
-    create hangman when incorrect answer
-    """
+    """create hangman when incorrect answer"""
     stages = [
         """
         +-----+
@@ -156,7 +159,6 @@ def create_hangman(incorrect):
     ]
     print(stages[incorrect])
 
-
 def printWord(guesses, pickWord):
     """
     Takes list of all letters guessed so far and checks if they are in the hidden word. 
@@ -173,6 +175,7 @@ def printWord(guesses, pickWord):
             print("_", end=" ")
     print(" ")
     return correctLetters 
+
 
 print("Welcome to Hangman The Game!")
 print(" ")
@@ -239,11 +242,14 @@ def play_hangman(pickWord):
 while True:
     theme_choice = select_theme()
     pickWord, theme = get_word(theme_choice)
-    print(" ")
-    print("The theme of this game is", theme)
-    print("Let's play hangman!")
-    print(".......................................................................")
-    print(" ")
+    print(
+        f"""
+The theme of this game is {theme}
+
+Let's play hangman!
+...........................................................
+        """
+    )
     play_hangman(pickWord)
     while True:
         play_again = input("\nDo you want to play again? (yes/no): \n").lower()
@@ -251,7 +257,9 @@ while True:
         if play_again == "yes" or play_again == "y":
             break
         elif play_again == "no" or play_again == "n":
-            print("No problem, thank you for playing! Hope to see you again soon")
+            print(
+                "No problem, thank you for playing! Hope to see you again soon"
+            )
             exit()
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
