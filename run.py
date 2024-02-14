@@ -1,4 +1,9 @@
 import random 
+import os
+
+def clear_terminal():
+    os.system('clear')
+
 
 def get_player_name():
     """Asks the player to input their name."""
@@ -241,6 +246,7 @@ def play_hangman(pickWord):
 while True:
     theme_choice = select_theme()
     pickWord, theme = get_word(theme_choice)
+    clear_terminal()
     print(
         f"""
 The theme of this game is {theme}
@@ -248,17 +254,25 @@ The theme of this game is {theme}
 Let's play hangman!
 ...........................................................
         """
-    )
+        )
     play_hangman(pickWord)
     while True:
-        play_again = input("\nDo you want to play again? (yes/no): \n").strip().lower()
+        play_again = input(
+            "\nDo you want to play again? Enter yes/y or no/n: \n"
+            ).strip().lower()
         print(" ")
         if play_again == "yes" or play_again == "y":
+            clear_terminal()
             break
         elif play_again == "no" or play_again == "n":
+            clear_terminal()
             print(
                 "No problem, thank you for playing! Hope to see you again soon"
             )
             exit()
         else:
-            print("Invalid input. Please enter 'yes' or 'no'.")
+            print(
+                f"""
+{play_again} is not a valid input. Please enter 'yes/y' or 'no/n'.
+                """
+                )
