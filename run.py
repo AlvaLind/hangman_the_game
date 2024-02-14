@@ -150,9 +150,6 @@ def create_hangman(incorrect):
         |    /_\\
         |   |   |
         |___|___|_____ 
-
-    One more incorrect guess 
-    and you're out of lives!
         """,
         """
         +-----+
@@ -240,12 +237,15 @@ def play_hangman(pickWord):
             clear_terminal()
             incorrect_guesses += 1
             create_hangman(incorrect_guesses)
-            print("Oops, incorrect guess. Keep guessing\n")
-            printWord(all_letters_guessed, pickWord)
-
-    if incorrect_guesses == 7:
-        print("\nOH NO", player_name, end = "! ")
-        print("You're out of guesses \nThe correct word was:", pickWord)
+            if incorrect_guesses == 6:
+                print("One more incorrect guess and you're out of lives!\n")
+                printWord(all_letters_guessed, pickWord)
+            elif incorrect_guesses == 7:
+                print("\nOH NO", player_name, end = ", ")
+                print("You're out of guesses! \nThe correct word was:", pickWord)
+            else:
+                print("Oops, incorrect guess. Keep guessing\n")
+                printWord(all_letters_guessed, pickWord)
 
 while True:
     theme_choice = select_theme()
