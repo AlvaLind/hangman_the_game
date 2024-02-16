@@ -1,3 +1,4 @@
+import instructions
 import random 
 import os
 import sys
@@ -41,7 +42,7 @@ Select a game theme:
         if theme_choice in ["1", "2", "3"]:
             return theme_choice
         elif theme_choice == "!":
-            instructions()
+            instructions.instructions()
         else:
             if len(theme_choice) != 1:
                 print(
@@ -72,21 +73,6 @@ def get_word(theme_choice):
         theme_words = ["football", "basketball", "tennis", "soccer", "baseball", "volleyball", "golf", "rugby", "cricket", "hockey", "swimming", "cycling", "boxing", "skiing", "surfing", "running", "wrestling", "badminton", "table tennis", "rowing"]
         theme = "sports"
     return random.choice(theme_words), theme   
-
-
-def instructions():
-    """
-    Prints the game Instructions 
-    """
-    print("--------------------")
-    print("Hangman Instructions")
-    print("--------------------")
-    print("Guess the letters to reveal the hidden country before the man gets hanged.")
-    print("You can guess as many times as you want but you only have 7 incorrect guesses")
-    print("until you loose. So use your guesses carefully!")
-    print("Each guess must only be a single letter.")
-    print("Good luck! Begin or continue your game below.")
-    print("--------------------")
 
 
 def display_hidden_word(pickWord):
@@ -224,7 +210,7 @@ def play_hangman(pickWord):
                 continue
             
             if guessedLetter == '!':
-                instructions()
+                instructions.instructions()
                 create_hangman(incorrect_guesses)
                 correct_letters = printWord(all_letters_guessed, pickWord)
                 continue
@@ -314,7 +300,7 @@ def play_again():
             continue
 
         if response == '!':
-                instructions()
+                instructions.instructions()
                 continue
         elif response in ['yes', 'y']:
             return True
