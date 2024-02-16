@@ -240,21 +240,21 @@ def play_hangman(pickWord):
                 if len(guessedLetter) != 1:
                     print(
                         f"""
-    {guessedLetter} has to many characters, please enter only one character.
+{guessedLetter} has to many characters, please enter only one character.
                     """)
                 elif guessedLetter.isdigit():
                     print(f"""
-    \n", guessedLetter,"is a number. Please enter a letter.""")
+\n", guessedLetter,"is a number. Please enter a letter.""")
                 else:
                     print(
                         f"""
-    \n", guessedLetter,"is not a letter. Please enter a letter.""")
+\n", guessedLetter,"is not a letter. Please enter a letter.""")
                 continue
 
             if guessedLetter in all_letters_guessed:
                 print(
                     f"""
-    You have already guessed {guessedLetter}, please guess another letter.
+You have already guessed {guessedLetter}, please guess another letter.
                     """)
                 continue
 
@@ -306,8 +306,8 @@ def main():
         pickWord, theme = get_word(theme_choice)
         clear_terminal()
         print(f"""
-        The theme of this game is {theme}
-        \nLet's play hangman!\n
+The theme of this game is {theme}
+\nLet's play hangman!\n
         """)
         play_hangman(pickWord)
         if not play_again():
@@ -337,7 +337,7 @@ def play_again():
         else:
             print(
                 f"""
-{response}  is not a valid input. Please enter 'yes/y' or 'no/n'.""")
+{response} is not a valid input. Please enter 'yes/y' or 'no/n'.""")
 
 
 if __name__ == "__main__":
