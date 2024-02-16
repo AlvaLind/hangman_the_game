@@ -213,6 +213,7 @@ print("\nIf you're feeling lost you can enter '!' at anytime for intructions.")
 def play_hangman(pickWord):
     """Function to play the game."""
     try:
+        create_hangman(0)
         print("Your word is: ", end=" ")
         display_hidden_word(pickWord)
         print(" ")
