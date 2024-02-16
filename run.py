@@ -1,5 +1,5 @@
 import instructions
-import random 
+import random
 import os
 import sys
 
@@ -24,7 +24,7 @@ def select_theme():
     """Asks the player to select a theme."""
     print(
         f"""
-Select a game theme: 
+Select a game theme:
 ..........................
 1. Countries
 2. Cities
@@ -52,11 +52,11 @@ between 1 and 3 or enter '!' for instructions.
                     """)
             else:
                 print(
-                f"""
-{theme_choice} is not a valid choice. 
+                    f"""
+{theme_choice} is not a valid choice.
 Please enter a number between 1 and 3 or enter '!' for instructions.
                 """
-            )
+                )
 
 
 def get_word(theme_choice):
@@ -64,20 +64,40 @@ def get_word(theme_choice):
     Returns a randomly selected word based on the chosen theme.
     """
     if theme_choice == "1":
-        theme_words = ["australia", "sweden", "finland", "norway", "denmark", "poland", "ireland", "spain", "italy", "madagascar", "fiji", "portugal", "greece", "albania", "ukrain", "switzerland", "cyprus", "argentina", "mauritius", "canada", "united states", "mexico", "morocco", "brazil", "chile", "philippines", "new zealand", "qatar", "estonia", "france", "singapore", "germany", "guatemala", "turkey", "jordan", "syria", "japan", "china", "russia"]
+        theme_words = [
+        "australia", "sweden", "finland", "norway", "denmark",
+        "poland", "ireland", "spain", "italy", "madagascar", "fiji",
+        "portugal", "greece", "albania", "ukrain", "switzerland", "cyprus",
+        "argentina", "mauritius", "canada", "united states", "mexico",
+        "morocco", "brazil", "chile", "philippines", "new zealand", "qatar",
+        "estonia", "france", "singapore", "germany", "guatemala", "turkey",
+        "jordan", "syria", "japan", "china", "russia"
+        ]
         theme = "countries"
     elif theme_choice == "2":
-        theme_words = ["london", "paris", "stockholm", "melbourne", "tokyo", "new york", "rome", "sydney", "beijing", "moscow", "cairo", "berlin", "amsterdam", "istanbul", "mumbai", "rio de janeiro", "dubai", "los angeles", "athens", "toronto", "singapore", "barcelona", "helsinki", "oslo"]
+        theme_words = [
+            "london", "paris", "stockholm", "melbourne", "tokyo",
+        "new york", "rome", "sydney", "beijing", "moscow", "cairo", "berlin",
+        "amsterdam", "istanbul", "mumbai", "rio de janeiro", "dubai",
+        "los angeles", "athens", "toronto", "singapore", "barcelona",
+        "helsinki", "oslo"
+        ]
         theme = "cities"
     elif theme_choice == "3":
-        theme_words = ["football", "basketball", "tennis", "soccer", "baseball", "volleyball", "golf", "rugby", "cricket", "hockey", "swimming", "cycling", "boxing", "skiing", "surfing", "running", "wrestling", "badminton", "table tennis", "rowing"]
+        theme_words = [
+        "football", "basketball", "tennis", "soccer",
+        "baseball", "volleyball", "golf", "rugby", "cricket", "hockey",
+        "swimming", "cycling", "boxing", "skiing", "surfing", "running",
+        "wrestling", "badminton", "table tennis", "rowing"
+        ]
         theme = "sports"
-    return random.choice(theme_words), theme   
+    return random.choice(theme_words), theme
 
 
 def display_hidden_word(pickWord):
     """
-    Creates an underscore for every letter and a space for the spaces between words where required.
+    Creates an underscore for every letter and a space for the spaces between
+    words where required.
     """
     for x in pickWord:
         if x == ' ':
@@ -92,8 +112,8 @@ def create_hangman(incorrect):
         """
         +-----+
         |     |
-        |     
-        |      
+        |
+        |
         |    ___
         |   |   |
         |___|___|_____
@@ -102,7 +122,7 @@ def create_hangman(incorrect):
         +-----+
         |     |
         |     O
-        |      
+        |
         |    ___
         |   |   |
         |___|___|_____
@@ -120,7 +140,7 @@ def create_hangman(incorrect):
         +-----+
         |     |
         |    \\O
-        |     | 
+        |     |
         |    ___
         |   |   |
         |___|___|_____
@@ -150,7 +170,7 @@ def create_hangman(incorrect):
         |     |
         |    /_\\
         |   |   |
-        |___|___|_____ 
+        |___|___|_____
         """,
         """
         +-----+
@@ -158,7 +178,7 @@ def create_hangman(incorrect):
         |     |
         |     O
         |    /|\\
-        |    / \\    
+        |    / \\
         |_____________
         """
     ]
@@ -167,8 +187,9 @@ def create_hangman(incorrect):
 
 def printWord(guesses, pickWord):
     """
-    Takes list of all letters guessed so far and checks if they are in the hidden word. 
-    Prints result to the terminal, and returns number of correct letters in the word. 
+    Takes list of all letters guessed so far and checks if they are in the
+    hidden word. Prints result to the terminal, and returns number of correct
+    letters in the word.
     """
     correctLetters = 0
     for char in pickWord:
@@ -180,12 +201,12 @@ def printWord(guesses, pickWord):
         else:
             print("_", end=" ")
     print(" ")
-    return correctLetters 
+    return correctLetters
 
 
 print("Welcome to Hangman The Game!\n")
 player_name = get_player_name()
-print("\nHello", player_name, end = "!")
+print("\nHello", player_name, end="!")
 print("\nIf you're feeling lost you can enter '!' at anytime for intructions.")
 
 
@@ -196,8 +217,8 @@ def play_hangman(pickWord):
         display_hidden_word(pickWord)
         print(" ")
 
-        length_of_word = len(pickWord.replace(" ", ""))   #Remove any spaces from pickWord and then calculate the number of letters
-        incorrect_guesses = 0 
+        length_of_word = len(pickWord.replace(" ", ""))
+        incorrect_guesses = 0
         letter_occurances = 0
         all_letters_guessed = []
 
@@ -205,51 +226,52 @@ def play_hangman(pickWord):
             print("\nGuessed letters: ", " ".join(all_letters_guessed))
             guessedLetter = input("Please guess a letter: \n").strip().lower()
 
-            if not guessedLetter:  # Check if input is empty
+            if not guessedLetter:
                 print("Guess cannot be empty. Please enter a letter.")
                 continue
-            
+
             if guessedLetter == '!':
                 instructions.instructions()
                 create_hangman(incorrect_guesses)
                 correct_letters = printWord(all_letters_guessed, pickWord)
                 continue
 
-            if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a single letter
+            if len(guessedLetter) != 1 or not guessedLetter.isalpha():
                 if len(guessedLetter) != 1:
                     print(
                         f"""
-    {guessedLetter} has to many characters, please enter only one character. """
-                    )
-                elif guessedLetter.isdigit():  # Check if the input is a number
-                    print("\n", guessedLetter,"is a number. Please enter a letter.")
+    {guessedLetter} has to many characters, please enter only one character.
+                    """)
+                elif guessedLetter.isdigit():
+                    print(f"""
+    \n", guessedLetter,"is a number. Please enter a letter.""")
                 else:
                     print(
-                        "\n", guessedLetter,"is not a letter. Please enter a letter."
-                        )
+                        f"""
+    \n", guessedLetter,"is not a letter. Please enter a letter.""")
                 continue
-            
+
             if guessedLetter in all_letters_guessed:
                 print(
                     f"""
-    You have already guessed {guessedLetter}, please guess another letter."""
-                    )  #Check that the guess is a new letter
+    You have already guessed {guessedLetter}, please guess another letter.
+                    """)
                 continue
-            
+
             all_letters_guessed.append(guessedLetter)
 
             if guessedLetter in pickWord:
                 clear_terminal()
                 letter_occurances += pickWord.count(guessedLetter)
                 create_hangman(incorrect_guesses)
-                
+
                 correct_letters = printWord(all_letters_guessed, pickWord)
-                
+
                 if correct_letters < length_of_word:
                     print("\nYou guessed correctly. Keep it up!")
 
                 elif correct_letters == length_of_word:
-                    print("\nCongratulations", player_name, end = "! ")
+                    print("\nCongratulations", player_name, end="! ")
                     print("You've guessed correctly, the word was:", pickWord)
                     break
             else:
@@ -258,10 +280,14 @@ def play_hangman(pickWord):
                 create_hangman(incorrect_guesses)
                 if incorrect_guesses == 6:
                     printWord(all_letters_guessed, pickWord)
-                    print("\nOne more incorrect guess and you're out of lives!")
+                    print(
+                        "\nOne more incorrect guess and you're out of lives!"
+                        )
                 elif incorrect_guesses == 7:
-                    print("\nOH NO", player_name, end = ", ")
-                    print("You're out of guesses! \nThe correct word was:", pickWord)
+                    print("\nOH NO", player_name, end=", ")
+                    print(
+                        f"""
+You're out of guesses! \nThe correct word was:""", pickWord)
                 else:
                     printWord(all_letters_guessed, pickWord)
                     print("\nOops, incorrect guess. Keep guessing")
@@ -286,7 +312,9 @@ def main():
         play_hangman(pickWord)
         if not play_again():
             clear_terminal()
-            print("No problem, thank you for playing! Hope to see you again soon.")
+            print(
+                f"""
+No problem, thank you for playing! Hope to see you again soon :)""")
             break
 
 
@@ -295,19 +323,22 @@ def play_again():
     while True:
         response = input(
             "\nDo you want to play again? (yes/y or no/n): \n").strip().lower()
-        if not response:  
+        if not response:
             print("Response cannot be empty. Please enter yes/y or no/n.")
             continue
 
         if response == '!':
-                instructions.instructions()
-                continue
+            instructions.instructions()
+            continue
         elif response in ['yes', 'y']:
             return True
         elif response in ['no', 'n']:
             return False
         else:
-            print(response,"is not a valid input. Please enter 'yes/y' or 'no/n'.")
+            print(
+                f"""
+{response}  is not a valid input. Please enter 'yes/y' or 'no/n'.""")
+
 
 if __name__ == "__main__":
     main()
