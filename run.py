@@ -33,8 +33,11 @@ Select a game theme:
     )
     while True:
         theme_choice = input(
-            "Please enter the number of your chosen theme:\n"
-            ).strip()
+            "Please enter the number of your chosen theme:\n").strip()
+        if not theme_choice:
+            print("Choice cannot be empty")
+            continue
+
         if theme_choice in ["1", "2", "3"]:
             return theme_choice
         elif theme_choice == "!":
@@ -196,8 +199,8 @@ def printWord(guesses, pickWord):
 
 print("Welcome to Hangman The Game!\n")
 player_name = get_player_name()
-print("\nHello", player_name, end = "! ")
-print("\nEnter '!' at anytime for intructions.")
+print("\nHello", player_name, end = "!")
+print("\nIf you're feeling lost you can enter '!' at anytime for intructions.")
 
 
 def play_hangman(pickWord):
@@ -215,6 +218,10 @@ def play_hangman(pickWord):
         while incorrect_guesses < 7:
             print("\nGuessed letters: ", " ".join(all_letters_guessed))
             guessedLetter = input("Please guess a letter: \n").strip().lower()
+
+            if not guessedLetter:  # Check if input is empty
+                print("Guess cannot be empty. Please enter a letter.")
+                continue
             
             if guessedLetter == '!':
                 instructions()
@@ -286,7 +293,10 @@ def main():
         theme_choice = select_theme()
         pickWord, theme = get_word(theme_choice)
         clear_terminal()
-        print(f"The theme of this game is {theme}\nLet's play hangman!\n")
+        print(f"""
+        The theme of this game is {theme}
+        \nLet's play hangman!\n
+        """)
         play_hangman(pickWord)
         if not play_again():
             clear_terminal()
@@ -299,6 +309,10 @@ def play_again():
     while True:
         response = input(
             "\nDo you want to play again? (yes/y or no/n): \n").strip().lower()
+        if not response:  
+            print("Response cannot be empty. Please enter yes/y or no/n.")
+            continue
+
         if response == '!':
                 instructions()
                 continue
@@ -307,7 +321,7 @@ def play_again():
         elif response in ['no', 'n']:
             return False
         else:
-            print(response,"Invalid input. Please enter 'yes/y' or 'no/n'.")
+            print(response,"is not a valid input. Please enter 'yes/y' or 'no/n'.")
 
 if __name__ == "__main__":
     main()
