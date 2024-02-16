@@ -273,6 +273,7 @@ def play_hangman(pickWord):
                     printWord(all_letters_guessed, pickWord)
                     print("\nOops, incorrect guess. Keep guessing")
     except KeyboardInterrupt:
+        clear_terminal()
         print("\nGame interrupted. Exiting...")
         sys.exit(0)
     except Exception as e:
@@ -280,36 +281,33 @@ def play_hangman(pickWord):
         sys.exit(1)
 
 
-while True:
-    theme_choice = select_theme()
-    pickWord, theme = get_word(theme_choice)
-    clear_terminal()
-    print(
-        f"""
-The theme of this game is {theme}
-
-Let's play hangman!
-...........................................................
-        """
-        )
-    play_hangman(pickWord)
+def main():
     while True:
-        play_again = input(
-            "\nDo you want to play again? Enter yes/y or no/n: \n"
-            ).strip().lower()
-        print(" ")
-        if play_again == "yes" or play_again == "y":
+        theme_choice = select_theme()
+        pickWord, theme = get_word(theme_choice)
+        clear_terminal()
+        print(f"The theme of this game is {theme}\nLet's play hangman!\n")
+        play_hangman(pickWord)
+        if not play_again():
             clear_terminal()
+            print("No problem, thank you for playing! Hope to see you again soon.")
             break
-        elif play_again == "no" or play_again == "n":
-            clear_terminal()
-            print(
-                "No problem, thank you for playing! Hope to see you again soon"
-            )
-            exit()
+
+
+def play_again():
+    """Ask the user if they want to play again."""
+    while True:
+        response = input(
+            "\nDo you want to play again? (yes/y or no/n): \n").strip().lower()
+        if response == '!':
+                instructions()
+                continue
+        elif response in ['yes', 'y']:
+            return True
+        elif response in ['no', 'n']:
+            return False
         else:
-            print(
-                f"""
-{play_again} is not a valid input. Please enter 'yes/y' or 'no/n'.
-                """
-                )
+            print(response,"Invalid input. Please enter 'yes/y' or 'no/n'.")
+
+if __name__ == "__main__":
+    main()
