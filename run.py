@@ -244,11 +244,11 @@ def play_hangman(pickWord):
                     """)
                 elif guessedLetter.isdigit():
                     print(f"""
-\n", guessedLetter,"is a number. Please enter a letter.""")
+\n {guessedLetter} is a number. Please enter a letter.""")
                 else:
                     print(
                         f"""
-\n", guessedLetter,"is not a letter. Please enter a letter.""")
+\n{guessedLetter} is not a letter. Please enter a letter.""")
                 continue
 
             if guessedLetter in all_letters_guessed:
