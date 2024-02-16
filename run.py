@@ -1,5 +1,7 @@
 import random 
 import os
+import sys
+
 
 def clear_terminal():
     os.system('clear')
@@ -68,6 +70,7 @@ def get_word(theme_choice):
         theme = "sports"
     return random.choice(theme_words), theme   
 
+
 def instructions():
     """
     Prints the game Instructions 
@@ -82,6 +85,7 @@ def instructions():
     print("Good luck! Begin or continue your game below.")
     print("--------------------")
 
+
 def display_hidden_word(pickWord):
     """
     Creates an underscore for every letter and a space for the spaces between words where required.
@@ -91,6 +95,7 @@ def display_hidden_word(pickWord):
             print(" ", end=" ")
         else:
             print("_", end=" ")
+
 
 def create_hangman(incorrect):
     """create hangman when incorrect answer"""
@@ -170,6 +175,7 @@ def create_hangman(incorrect):
     ]
     print(stages[incorrect])
 
+
 def printWord(guesses, pickWord):
     """
     Takes list of all letters guessed so far and checks if they are in the hidden word. 
@@ -188,87 +194,91 @@ def printWord(guesses, pickWord):
     return correctLetters 
 
 
-print("Welcome to Hangman The Game!")
-print(" ")
-
+print("Welcome to Hangman The Game!\n")
 player_name = get_player_name()
-
-print(" ")
-print("Hello", player_name, end = "! ")
+print("\nHello", player_name, end = "! ")
 print("\nEnter '!' at anytime for intructions.")
 
 
 def play_hangman(pickWord):
     """Function to play the game."""
-    print("Your word is: ", end=" ")
-    display_hidden_word(pickWord)
-    print(" ")
+    try:
+        print("Your word is: ", end=" ")
+        display_hidden_word(pickWord)
+        print(" ")
 
-    length_of_word = len(pickWord.replace(" ", ""))   #Remove any spaces from pickWord and then calculate the number of letters
-    incorrect_guesses = 0 
-    letter_occurances = 0
-    all_letters_guessed = []
+        length_of_word = len(pickWord.replace(" ", ""))   #Remove any spaces from pickWord and then calculate the number of letters
+        incorrect_guesses = 0 
+        letter_occurances = 0
+        all_letters_guessed = []
 
-    while incorrect_guesses < 7:
-        print("\nGuessed letters: ", " ".join(all_letters_guessed))
-        guessedLetter = input("Please guess a letter: \n").strip().lower()
-        
-        if guessedLetter == '!':
-            instructions()
-            create_hangman(incorrect_guesses)
-            correct_letters = printWord(all_letters_guessed, pickWord)
-            continue
+        while incorrect_guesses < 7:
+            print("\nGuessed letters: ", " ".join(all_letters_guessed))
+            guessedLetter = input("Please guess a letter: \n").strip().lower()
+            
+            if guessedLetter == '!':
+                instructions()
+                create_hangman(incorrect_guesses)
+                correct_letters = printWord(all_letters_guessed, pickWord)
+                continue
 
-        if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a single letter
-            if len(guessedLetter) != 1:
+            if len(guessedLetter) != 1 or not guessedLetter.isalpha():  #Check that the guessed value is a single letter
+                if len(guessedLetter) != 1:
+                    print(
+                        f"""
+    {guessedLetter} has to many characters, please enter only one character. """
+                    )
+                elif guessedLetter.isdigit():  # Check if the input is a number
+                    print("\n", guessedLetter,"is a number. Please enter a letter.")
+                else:
+                    print(
+                        "\n", guessedLetter,"is not a letter. Please enter a letter."
+                        )
+                continue
+            
+            if guessedLetter in all_letters_guessed:
                 print(
                     f"""
-{guessedLetter} has to many characters, please enter only one character. """
-                )
-            elif guessedLetter.isdigit():  # Check if the input is a number
-                print("\n", guessedLetter,"is a number. Please enter a letter.")
-            else:
-                print(
-                    "\n", guessedLetter,"is not a letter. Please enter a letter."
-                    )
-            continue
-        
-        if guessedLetter in all_letters_guessed:
-            print(
-                f"""
-You have already guessed {guessedLetter}, please guess another letter. """
-                )  #Check that the guess is a new letter
-            continue
-        
-        all_letters_guessed.append(guessedLetter)
-
-        if guessedLetter in pickWord:
-            clear_terminal()
-            letter_occurances += pickWord.count(guessedLetter)
-            create_hangman(incorrect_guesses)
+    You have already guessed {guessedLetter}, please guess another letter."""
+                    )  #Check that the guess is a new letter
+                continue
             
-            correct_letters = printWord(all_letters_guessed, pickWord)
-            
-            if correct_letters < length_of_word:
-                print("\nYou guessed correctly. Keep it up!")
+            all_letters_guessed.append(guessedLetter)
 
-            elif correct_letters == length_of_word:
-                print("\nCongratulations", player_name, end = "! ")
-                print("You've guessed correctly, the word was:", pickWord)
-                break
-        else:
-            clear_terminal()
-            incorrect_guesses += 1
-            create_hangman(incorrect_guesses)
-            if incorrect_guesses == 6:
-                printWord(all_letters_guessed, pickWord)
-                print("\nOne more incorrect guess and you're out of lives!")
-            elif incorrect_guesses == 7:
-                print("\nOH NO", player_name, end = ", ")
-                print("You're out of guesses! \nThe correct word was:", pickWord)
+            if guessedLetter in pickWord:
+                clear_terminal()
+                letter_occurances += pickWord.count(guessedLetter)
+                create_hangman(incorrect_guesses)
+                
+                correct_letters = printWord(all_letters_guessed, pickWord)
+                
+                if correct_letters < length_of_word:
+                    print("\nYou guessed correctly. Keep it up!")
+
+                elif correct_letters == length_of_word:
+                    print("\nCongratulations", player_name, end = "! ")
+                    print("You've guessed correctly, the word was:", pickWord)
+                    break
             else:
-                printWord(all_letters_guessed, pickWord)
-                print("\nOops, incorrect guess. Keep guessing")
+                clear_terminal()
+                incorrect_guesses += 1
+                create_hangman(incorrect_guesses)
+                if incorrect_guesses == 6:
+                    printWord(all_letters_guessed, pickWord)
+                    print("\nOne more incorrect guess and you're out of lives!")
+                elif incorrect_guesses == 7:
+                    print("\nOH NO", player_name, end = ", ")
+                    print("You're out of guesses! \nThe correct word was:", pickWord)
+                else:
+                    printWord(all_letters_guessed, pickWord)
+                    print("\nOops, incorrect guess. Keep guessing")
+    except KeyboardInterrupt:
+        print("\nGame interrupted. Exiting...")
+        sys.exit(0)
+    except Exception as e:
+        print("Unfortunately an error occurred:", e)
+        sys.exit(1)
+
 
 while True:
     theme_choice = select_theme()
