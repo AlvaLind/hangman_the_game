@@ -1,7 +1,7 @@
-import instructions
 import random
 import os
 import sys
+import instructions
 
 
 def clear_terminal():
