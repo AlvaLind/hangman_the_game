@@ -54,7 +54,7 @@ Select a game theme:
             clear_terminal()
             print(
                 f"""
-Choice cannot be empty, please enter a number between 1 and 3 or 
+Choice cannot be empty, please enter a number between 1 and 3 or
 enter '!' for instructions.""")
             continue
 
