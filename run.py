@@ -68,7 +68,7 @@ enter '!' for instructions.""")
                 clear_terminal()
                 print(
                     f"""
-{theme_choice} has to many characters, please enter only one number
+{theme_choice} has too many characters, please enter only one number
 between 1 and 3 or enter '!' for instructions.
                     """)
             else:
@@ -253,7 +253,7 @@ Guess cannot be empty. Please enter a letter.""")
                     correct_letters = printWord(all_letters_guessed, pickWord)
                     print(
                         f"""
-{guessedLetter} has to many characters, please enter only one character.""")
+{guessedLetter} has too many characters, please enter only one character.""")
                 elif guessedLetter.isdigit():
                     clear_terminal()
                     create_hangman(incorrect_guesses)
