@@ -351,6 +351,7 @@ def play_again():
             continue
 
         if response == '!':
+            clear_terminal()
             instructions.instructions()
             continue
         elif response in ['yes', 'y']:
