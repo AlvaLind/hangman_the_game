@@ -1,6 +1,6 @@
 import random
 import os
-import sys
+from time import sleep
 import instructions
 import countries
 import cities
@@ -330,6 +330,8 @@ def main():
 The theme of this game is {theme}
 \nLet's play hangman!\n
         """)
+        sleep(2)
+        clear_terminal()
         play_hangman(pick_word)
         if not play_again():
             clear_terminal()
