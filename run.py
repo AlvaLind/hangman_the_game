@@ -232,7 +232,12 @@ def play_hangman(pickWord):
             guessedLetter = input("Please guess a letter: \n").strip().lower()
 
             if not guessedLetter:
-                print("Guess cannot be empty. Please enter a letter.")
+                clear_terminal()
+                create_hangman(incorrect_guesses)
+                correct_letters = printWord(all_letters_guessed, pickWord)
+                print(
+                    f"""
+Guess cannot be empty. Please enter a letter.""")
                 continue
 
             if guessedLetter == '!':
