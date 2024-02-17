@@ -52,7 +52,10 @@ Select a game theme:
             "Please enter the number of your chosen theme:\n").strip()
         if not theme_choice:
             clear_terminal()
-            print("Choice cannot be empty")
+            print(
+                f"""
+Choice cannot be empty, please enter a number between 1 and 3 or 
+enter '!' for instructions.""")
             continue
 
         if theme_choice in ["1", "2", "3"]:
@@ -72,8 +75,8 @@ between 1 and 3 or enter '!' for instructions.
                 clear_terminal()
                 print(
                     f"""
-{theme_choice} is not a valid choice.
-Please enter a number between 1 and 3 or enter '!' for instructions.
+{theme_choice} is not a valid choice, please enter a number between 1 and 3 or
+enter '!' for instructions.
                 """
                 )
 
