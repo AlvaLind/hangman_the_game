@@ -16,7 +16,7 @@ Start playing now and let the word adventures begin!
 
 
 ## How to play
-1. Click this link *[link](https://hangman-the-game-43fde6f5e4b3.herokuapp.com/) or copy this link https://hangman-the-game-43fde6f5e4b3.herokuapp.com/ and paste it in your browsers search bar.
+1. Click this [link](https://hangman-the-game-43fde6f5e4b3.herokuapp.com/) or copy this url https://hangman-the-game-43fde6f5e4b3.herokuapp.com/ and paste it in your browsers search bar.
 1. When the page has loaded, click 'RUN PROGRAM'.
 1. Enter your name to start playing.
 1. Begin by selecting a theme, which will determine the category of the word you'll be attempting to decipher.
@@ -32,13 +32,13 @@ Link to game: *https://hangman-the-game-43fde6f5e4b3.herokuapp.com/*
 ## User Stories 
 ### First Time Visitor Goals:
 
-* As a first time visitor, I want to easly understand the concept including how to select themes, guess letters, and avoid completing the hangman drawing.
+* As a first time visitor, I want to easly understand the concept including how to select themes, guess letters, and track my progress.
 * As a first time visitor, I want to easly navigate through the program.
 * As a first time visitor, I want to get informative error messages if I get stuck so I know how to proceed.
 
 ### Frequent Visitor Goals:
-* As a Frequent User, I want to be provided with a diverse selection of words within each theme to ensure that the game remains engaging and consistently challenging.
-* 
+* As a frequent user, I want to be provided with a diverse selection of words within each theme to ensure that the game remains engaging and consistently challenging.
+* As a frequent user, I want a smooth and effortless user experience from start to finish to maximise fun. 
 
 ## Features
  **When the program is loaded**
@@ -48,7 +48,7 @@ Under the welcome message the user is kindly asked to enter their player name. S
 
 ![welcome message at the start of the game](documentation/welcome-message.png)
 
- After the user has entered their player name a message will appear greeting the player with their player name and informs player how to access the instructions to the game.
+ After the user has entered their player name a message will appear greeting the player and informing them on how to access the instructions to the game.
 
 **Select game theme**
 
@@ -128,9 +128,9 @@ If the player wants to exit the game they can enter no and the terminal will be 
 
 ## Flowchart
 
-The flowchart below presents my initial concept for the Hangman game. While some ideas have evolved throughout the process.
+The flowchart below presents my initial concept for the Hangman game. Using this flowchart the hangman game play utility was constructed. From this inital concept the game was further developed to provide a smoother and more exciting user experience. 
 
-![flowchart](documentation/)
+![flowchart](documentation/flowchart.png)
 
 ## Technologies Used
 
@@ -145,12 +145,8 @@ The flowchart below presents my initial concept for the Hangman game. While some
 
 ##### Standard library imports:
 * [random](https://docs.python.org/3/library/random.html) was used to implement pseudo-random number generation.
-* [os](https://docs.python.org/3/library/os.html ) was used to clear the terminal before running the program.
+* [os](https://docs.python.org/3/library/os.html ) was used to clear the terminal before and during the running of the program.
 * [sleep](https://realpython.com/python-sleep/) from [time](https://docs.python.org/3/library/time.html) was used for debugging.
-
-##### Third-party imports:
-
-I used no third-party imports for this project.
 
 #### Other tools:
 
@@ -165,3 +161,100 @@ I used no third-party imports for this project.
 ## Bugs
 
 **Solved Bugs**
+
+1. Validiating the name input
+
+* Problem: When prompting the user to input their player name, they where able to enter a name made up of only spaces or to have spaces before and after their palyer name. 
+
+* Solution: To solve this bug the .strip() built in string method was used to remove leading and trailing clear spaces. In addition a elif statement was added to the user name input validity loop when the name was left empty or with no valid character to return an error message to the user.
+
+``` python
+def get_player_name():
+    """Asks the player to input their name."""
+    while True:
+        player_name = input(
+            f"""
+Please enter player name:
+(Must contain at least one letter and cannot include special characters)
+""").strip()
+        if not player_name:
+            clear_terminal()
+            print("Name cannot be empty")
+        elif len(player_name) > 15:
+            clear_terminal()
+            print("Name cannot be longer than 15 characters")
+        elif not any(char.isalpha() for char in player_name.replace(' ', '')):
+            clear_terminal()
+            print("Name must contain at least one letter")
+        elif not all(char.isalnum() or char.isspace() for char in player_name):
+            clear_terminal()
+            print("Name cannot contain special characters")
+        else:
+            return player_name
+```
+
+1. Detailing incorrect user input message.
+
+* Problem: When the user entered an invalid input when guessing a letter, the terminal displayed a generic error message, which did not specify why the input was deemed incorrect. As a result, the user could end up confused and have difficulty proceeding. This also tends to result in multiple occurrences of the user entering invalid inputs, which pile up in the terminal and are not cleared after each incorrect entry, causing a cluttered terminal and frustrating user experience. 
+
+* Solution: The play_hangman function now incorporates several if statements to identify various types of invalid input, such as multiple characters, numerical values, and special characters. These if statements provide clear instructions to the user, explaining why their input was considered invalid.
+
+```python
+        while incorrect_guesses < 7:
+            print("\nGuessed letters: ", " ".join(all_letters_guessed))
+            guessedLetter = input("Please guess a letter: \n").strip().lower()
+
+            if not guessedLetter:
+                clear_terminal()
+                create_hangman(incorrect_guesses)
+                correct_letters = printWord(all_letters_guessed, pick_word)
+                print(
+                    f"""
+Guess cannot be empty. Please enter a letter."""
+                )
+                continue
+
+            if guessedLetter == '!':
+                clear_terminal()
+                instructions.instructions()
+                create_hangman(incorrect_guesses)
+                correct_letters = printWord(all_letters_guessed, pick_word)
+                continue
+
+            if len(guessedLetter) != 1 or not guessedLetter.isalpha():
+                if len(guessedLetter) != 1:
+                    clear_terminal()
+                    create_hangman(incorrect_guesses)
+                    correct_letters = printWord(all_letters_guessed, pick_word)
+                    print(
+                        f"""
+{guessedLetter} has too many characters, please enter only one character."""
+                    )
+                elif guessedLetter.isdigit():
+                    clear_terminal()
+                    create_hangman(incorrect_guesses)
+                    correct_letters = printWord(all_letters_guessed, pick_word)
+                    print(f"""
+{guessedLetter} is a number. Please enter a letter."""
+                    )
+                else:
+                    clear_terminal()
+                    create_hangman(incorrect_guesses)
+                    correct_letters = printWord(all_letters_guessed, pick_word)
+                    print(
+                        f"""
+{guessedLetter} is not a letter. Please enter a letter."""
+                    )
+                continue
+
+            if guessedLetter in all_letters_guessed:
+                clear_terminal()
+                create_hangman(incorrect_guesses)
+                correct_letters = printWord(all_letters_guessed, pick_word)
+                print(
+                    f"""
+You have already guessed {guessedLetter}, please guess another letter."""
+                )
+                continue
+```
+
