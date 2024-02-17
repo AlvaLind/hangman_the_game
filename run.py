@@ -8,7 +8,7 @@ import sports
 
 
 def clear_terminal():
-    #os.system('clear')
+    """Clear the terminal """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
@@ -83,9 +83,7 @@ enter '!' for instructions.
 
 
 def get_word(theme_choice):
-    """
-    Returns a randomly selected word based on the chosen theme.
-    """
+    """Returns a randomly selected word based on the chosen theme."""
     if theme_choice == "1":
         theme_words = countries.get_countries_words()
         theme = "countries"
@@ -237,7 +235,8 @@ def play_hangman(pick_word):
                 correct_letters = printWord(all_letters_guessed, pick_word)
                 print(
                     f"""
-Guess cannot be empty. Please enter a letter.""")
+Guess cannot be empty. Please enter a letter."""
+                )
                 continue
 
             if guessedLetter == '!':
@@ -254,20 +253,23 @@ Guess cannot be empty. Please enter a letter.""")
                     correct_letters = printWord(all_letters_guessed, pick_word)
                     print(
                         f"""
-{guessedLetter} has too many characters, please enter only one character.""")
+{guessedLetter} has too many characters, please enter only one character."""
+                    )
                 elif guessedLetter.isdigit():
                     clear_terminal()
                     create_hangman(incorrect_guesses)
                     correct_letters = printWord(all_letters_guessed, pick_word)
                     print(f"""
-{guessedLetter} is a number. Please enter a letter.""")
+{guessedLetter} is a number. Please enter a letter."""
+                    )
                 else:
                     clear_terminal()
                     create_hangman(incorrect_guesses)
                     correct_letters = printWord(all_letters_guessed, pick_word)
                     print(
                         f"""
-{guessedLetter} is not a letter. Please enter a letter.""")
+{guessedLetter} is not a letter. Please enter a letter."""
+                    )
                 continue
 
             if guessedLetter in all_letters_guessed:
@@ -276,7 +278,8 @@ Guess cannot be empty. Please enter a letter.""")
                 correct_letters = printWord(all_letters_guessed, pick_word)
                 print(
                     f"""
-You have already guessed {guessedLetter}, please guess another letter.""")
+You have already guessed {guessedLetter}, please guess another letter."""
+                )
                 continue
 
             all_letters_guessed.append(guessedLetter)
@@ -303,12 +306,13 @@ You have already guessed {guessedLetter}, please guess another letter.""")
                     printWord(all_letters_guessed, pick_word)
                     print(
                         "\nOne more incorrect guess and you're out of lives!"
-                        )
+                    )
                 elif incorrect_guesses == 7:
                     print("\nOH NO", player_name, end=", ")
                     print(
                         f"""
-You're out of guesses! \nThe correct word was:""", pick_word)
+You're out of guesses! \nThe correct word was:""", pick_word
+                    )
                 else:
                     printWord(all_letters_guessed, pick_word)
                     print("\nOops, incorrect guess. Keep guessing")
@@ -328,7 +332,8 @@ def main():
         clear_terminal()
         print(f"""
 The theme of this game is {theme}
-\nLet's play hangman!\n
+
+Let's play hangman!
         """)
         sleep(2)
         clear_terminal()
@@ -337,7 +342,8 @@ The theme of this game is {theme}
             clear_terminal()
             print(
                 f"""
-No problem, thank you for playing! Hope to see you again soon :)""")
+No problem, thank you for playing! Hope to see you again soon :)"""
+            )
             break
 
 
@@ -346,8 +352,8 @@ def play_again():
     while True:
         response = input(
             f"""
-\nDo you want to play again? (yes/y to play agian or no/n to leave the game):\n
-""").strip().lower()
+Do you want to play again? (yes/y to play agian or no/n to leave the game):
+        """).strip().lower()
         if not response:
             clear_terminal()
             print("Response cannot be empty. Please enter yes/y or no/n.")
@@ -365,7 +371,8 @@ def play_again():
             clear_terminal()
             print(
                 f"""
-{response} is not a valid input. Please enter 'yes/y' or 'no/n'.""")
+{response} is not a valid input. Please enter 'yes/y' or 'no/n'."""
+            )
 
 
 if __name__ == "__main__":
