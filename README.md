@@ -258,3 +258,53 @@ You have already guessed {guessedLetter}, please guess another letter."""
                 continue
 ```
 
+**Unsolved Bugs**
+
+1. Clearing of the terminal in the deployed terminal.
+
+![unsolved bug](documentation/unsolved-bug.png)
+
+I am aware of the bug related to clearing the terminal. While the function works correctly in the Gitpod terminal, it doesn't behave as expected in the deployed version. 
+
+![unsolved bug > no bug in the Gitpod terminal](documentation/nobug-gitpod-terminal.png)
+
+I attempted to address this using os systems with the following code snippet:
+```python
+os.system('cls' if os.name == 'nt' else 'clear')
+```
+
+Additionally, I used the sleep() function for debugging purposes. However, despite these efforts, I haven't been able to resolve the issue in the deployed version. I'm confident in the correctness of my code, so it appears to be a compatibility issue.
+
+## Testing
+
+The program underwent thorough testing throughout its development process. Both myself and other users tested it extensively to identify errors in both the functions and spellings, ensuring the elimination of any potential issues.
+
+### Validators
+
+* [Pep8 validator](https://pep8ci.herokuapp.com/) was used to improve readability and consistency to make sure the best practices for writing Python was used. 
+
+After pasting the code in pep8 validator no errors were found in the code:
+
+![pep8 results](documentation/pep8-test.png)
+
+**Issues with validating code**
+
+Due to discrepancies between the validator's output and GitHub's display, I'll provide additional screenshots to ensure clarity regarding the code structure and adherence to PEP 8 requirements. These screenshots demonstrate that the code is structured entirely in accordance with PEP 8 standards:
+
+![empty last line](documentation/empty-last-line-py.png)
+* run.py
+
+![empty last line](documentation/empty-last-line-countries.png)
+* country.py
+
+![empty last line](documentation/empty-last-line-4.png)
+* cities.py
+
+![empty last line](documentation/empty-last-line-5.png)
+* sports.py
+
+![empty last line](documentation/empty-last-line-3.png)
+* instructions.py
+
+
+## Deployment
