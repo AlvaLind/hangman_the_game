@@ -1,6 +1,6 @@
 # Hangman The Game
 
-<img src="documentation/responsive-hangman.png" alt="responsiveness of the game">
+![responsiveness of the game](documentation/responsive-hangman.png)
 
 *The link to [Hangman The Game](https://hangman-the-game-43fde6f5e4b3.herokuapp.com/)*
 
@@ -14,7 +14,6 @@ Explore Words with Customizable Hangman Themes - Hangman The Game is a python te
 
 Start playing now and let the word adventures begin!
 
-    ---
 
 ## How to play
 1. Click this link *[link](https://hangman-the-game-43fde6f5e4b3.herokuapp.com/) or copy this link https://hangman-the-game-43fde6f5e4b3.herokuapp.com/ and paste it in your browsers search bar.
@@ -29,7 +28,6 @@ Start playing now and let the word adventures begin!
 
 Link to game: *https://hangman-the-game-43fde6f5e4b3.herokuapp.com/*
 
-    ---
 
 ## User Stories 
 ### First Time Visitor Goals:
@@ -48,7 +46,7 @@ Link to game: *https://hangman-the-game-43fde6f5e4b3.herokuapp.com/*
 When the program starts a welcome message will appear to welcome the user and introduce the name of the game.
 Under the welcome message the user is kindly asked to enter their player name. Some added details regarding the input requirements are also displayed to clearly inform the user of what they cannot include in their player name. 
 
- <img src="documentation/welcome-message.png" alt="welcome message at the start of the game">
+![welcome message at the start of the game](documentation/welcome-message.png)
 
  After the user has entered their player name a message will appear greeting the player with their player name and informs player how to access the instructions to the game.
 
@@ -56,7 +54,7 @@ Under the welcome message the user is kindly asked to enter their player name. S
 
 Under the greeting and information about how to access the instructions the player is asked to pick a theme of the game by entering '1' for countries, '2' for cities or '3' for sports.
 
- <img src="documentation/pick-a-theme.png" alt="aking the player to pick a theme of the game">
+![asking the player to pick a theme of the game](documentation/pick-a-theme.png)
 
 If the user enters a letter, special character, or a number greater than 3, or leaves the input empty, an error message will appear. This message explains that the input is incorrect and provides guidance on the available options.
 
@@ -64,11 +62,11 @@ If the user enters a letter, special character, or a number greater than 3, or l
 
 When entering '!' a description of how you play the game will be displayed in the terminal. Additionally, the game themes will be listed below, allowing the player to easily return to the game after reading the instructions. The player can access the instructions at any point during the game by entering '!'.
 
-<img src="documentation/instructions-in-pick_theme.png" alt="instructions of the game">
+![instructions of the game](documentation/instructions-in-pick_theme.png)
 
 **When the user has picked the theme of the game**
 
-<img src="documentation/game-start.png" alt="start of the game image">
+![start of the game image](documentation/game-start.png)
 
 The chosen theme is represented at the top of the screen followed by an enthusiastic message saying 'Let's play Hangman!' to build excitement for the upcoming challenge.
 
@@ -78,37 +76,37 @@ The player can then see the initial part of the hangman picture and a series of 
 
 * When correct guess:
 
-<img src="documentation/guessing-correctly.png" alt="correct guess image">
+![correct guess image](documentation/guessing-correctly.png)
 
 When guessing a letter that is included in the hidden word a message saying 'You guessed correctly' appears and the letter shows up in the hidden word. 
 
 * When incorrect guess: 
 
-<img src="documentation/guessing-incorrect.png" alt="incorrect guess image">
+![incorrect guess image](documentation/guessing-incorrect.png)
 
 If the guessed letter is incorrect, a message appears notifying the player that the letter was not found in the hidden word. Additionally, since the guess was incorrect, the hangman picture begins to take shape, starting with the addition of the head.
 
 * Guessed letters
 
-<img src="documentation/guessed-letters.png" alt="image of the guessed letters">
+![image of the guessed letters](documentation/guessed-letters.png)
 
 The guessed letters are displayed above the input field, allowing the player to keep track of their guesses and avoid repeating any letters. 
 
 * If the player has only one remaining chance before running out of lives.
 
-<img src="documentation/last-chance-message.png" alt="last chance message image">
+![last chance message image](documentation/last-chance-message.png)
 
 When the player has only one incorrect guess left before losing the game, a message appears to alert them. This serves as a reminder for the player to be extra careful with their guesses.
 
 **Winning** 
 
-<img src="documentation/winning.png" alt="revealing of the hidden word and winner message">
+![revealing of the hidden word and winner message](documentation/winning.png)
 
 When successfully guessing all the letters in the hidden word, you win the game. The hidden word is then revealed on the screen along with a congratulatory message.
 
 **Losing**
 
-<img src="documentation/losing.png" alt="revealing of the hidden word and the last hangman image">
+![revealing of the hidden word and the last hangman image](documentation/losing.png)
 
 If the player fails to guess all the correct letters in the hidden word before the hangman is fully drawn, they lose the game. In the event of a loss, the completed hangman picture is displayed, and the hidden word is revealed.
 
@@ -116,11 +114,54 @@ If the player fails to guess all the correct letters in the hidden word before t
 
 After the game ends, the player is prompted to either play again or exit. If they choose to play again, they get to restart the game by selecting a theme for the new round.
 
-<img src="documentation/play-again.png" alt="asking if the player want's to play again image">
+![play again message image](documentation/play-again.png)
 
-**Error messages** 
+If the player wants to exit the game they can enter no and the terminal will be cleared and a goodbye message appear.
+
+![image of goodbye message](documentation/goodbye-msg.png)
+
+**Incorrect user input messages** 
 
 * When the user's input is invalid, an error message is displayed, providing clear guidance on the issue and what action is needed to proceed and continue the game.
 
 * If the user chooses to exit the game midway, an error message reading 'Game interrupted. Exiting...' will be displayed, followed by clearing the terminal for a seamless transition.
 
+## Flowchart
+
+The flowchart below presents my initial concept for the Hangman game. While some ideas have evolved throughout the process.
+
+![flowchart](documentation/)
+
+## Technologies Used
+
+### Languages:
+
+* [Python 3.12.1](https://www.python.org/downloads/release/python-3121/) established the framework for the project and guiding all aspects of application behavior.
+* [JavaScript](https://www.javascript.com/): used to provide the start script needed to run the Code Institute mock terminal in the browser.
+* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) utilized in constructing the components necessary for building the mock terminal within the browser.
+
+### Frameworks/Libraries, Programmes and Tools:
+#### Python modules/packages:
+
+##### Standard library imports:
+* [random](https://docs.python.org/3/library/random.html) was used to implement pseudo-random number generation.
+* [os](https://docs.python.org/3/library/os.html ) was used to clear the terminal before running the program.
+* [sleep](https://realpython.com/python-sleep/) from [time](https://docs.python.org/3/library/time.html) was used for debugging.
+
+##### Third-party imports:
+
+I used no third-party imports for this project.
+
+#### Other tools:
+
+* [Gitpod](https://www.gitpod.io/) was used as the main tool to write and edit code.
+* [Git](https://git-scm.com/) was used for the version control of the website.
+* [GitHub](https://github.com/) was used to host the code of the website.
+* [Pep8](https://pep8ci.herokuapp.com/) was used to formatting the code to make it more readable and consistent.
+* [AmIResponsive](https://ui.dev/amiresponsive) to create the responsive showcase of the project.
+* [Lucidchart](https://lucid.app/documents) to create the flowchart for the project.
+
+
+## Bugs
+
+**Solved Bugs**
