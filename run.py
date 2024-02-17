@@ -343,6 +343,7 @@ def play_again():
 \nDo you want to play again? (yes/y to play agian or no/n to leave the game):\n
 """).strip().lower()
         if not response:
+            clear_terminal()
             print("Response cannot be empty. Please enter yes/y or no/n.")
             continue
 
@@ -354,10 +355,10 @@ def play_again():
         elif response in ['no', 'n']:
             return False
         else:
+            clear_terminal()
             print(
                 f"""
-{response} is not a valid input. Please enter 'yes/y' or 'no/n'.
-            """)
+{response} is not a valid input. Please enter 'yes/y' or 'no/n'.""")
 
 
 if __name__ == "__main__":
