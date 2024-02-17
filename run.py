@@ -249,24 +249,34 @@ Guess cannot be empty. Please enter a letter.""")
 
             if len(guessedLetter) != 1 or not guessedLetter.isalpha():
                 if len(guessedLetter) != 1:
+                    clear_terminal()
+                    create_hangman(incorrect_guesses)
+                    correct_letters = printWord(all_letters_guessed, pickWord)
                     print(
                         f"""
-{guessedLetter} has to many characters, please enter only one character.
-                    """)
+{guessedLetter} has to many characters, please enter only one character.""")
                 elif guessedLetter.isdigit():
+                    clear_terminal()
+                    create_hangman(incorrect_guesses)
+                    correct_letters = printWord(all_letters_guessed, pickWord)
                     print(f"""
 {guessedLetter} is a number. Please enter a letter.""")
                 else:
+                    clear_terminal()
+                    create_hangman(incorrect_guesses)
+                    correct_letters = printWord(all_letters_guessed, pickWord)
                     print(
                         f"""
 {guessedLetter} is not a letter. Please enter a letter.""")
                 continue
 
             if guessedLetter in all_letters_guessed:
+                clear_terminal()
+                create_hangman(incorrect_guesses)
+                correct_letters = printWord(all_letters_guessed, pickWord)
                 print(
                     f"""
-You have already guessed {guessedLetter}, please guess another letter.
-                    """)
+You have already guessed {guessedLetter}, please guess another letter.""")
                 continue
 
             all_letters_guessed.append(guessedLetter)
