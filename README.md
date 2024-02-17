@@ -52,7 +52,9 @@ Under the welcome message the user is kindly asked to enter their player name. S
 
  After the user has entered their player name a message will appear greeting the player with their player name and informs player how to access the instructions to the game.
 
- **Under the greeting and information about how to access the instructions the player is asked to pick a theme of the game by entering '1' for countries, '2' for cities or '3' for sports.**
+**Select game theme**
+
+Under the greeting and information about how to access the instructions the player is asked to pick a theme of the game by entering '1' for countries, '2' for cities or '3' for sports.
 
  <img src="documentation/pick-a-theme.png" alt="aking the player to pick a theme of the game">
 
