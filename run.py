@@ -2,6 +2,9 @@ import random
 import os
 import sys
 import instructions
+import countries
+import cities
+import sports
 
 
 def clear_terminal():
@@ -80,32 +83,13 @@ def get_word(theme_choice):
     Returns a randomly selected word based on the chosen theme.
     """
     if theme_choice == "1":
-        theme_words = [
-            "australia", "sweden", "finland", "norway", "denmark",
-            "poland", "ireland", "spain", "italy", "madagascar", "fiji",
-            "portugal", "greece", "albania", "ukrain", "switzerland", "cyprus",
-            "argentina", "mauritius", "canada", "united states", "mexico",
-            "morocco", "brazil", "chile", "philippines", "new zealand", "qatar",
-            "estonia", "france", "singapore", "germany", "guatemala", "turkey",
-            "jordan", "syria", "japan", "china", "russia"
-        ]
+        theme_words = countries.get_countries_words()
         theme = "countries"
     elif theme_choice == "2":
-        theme_words = [
-            "london", "paris", "stockholm", "melbourne", "tokyo",
-            "new york", "rome", "sydney", "beijing", "moscow", "cairo", "berlin",
-            "amsterdam", "istanbul", "mumbai", "rio de janeiro", "dubai",
-            "los angeles", "athens", "toronto", "singapore", "barcelona",
-            "helsinki", "oslo"
-        ]
+        theme_words = cities.get_cities_words()
         theme = "cities"
     elif theme_choice == "3":
-        theme_words = [
-            "football", "basketball", "tennis", "soccer",
-            "baseball", "volleyball", "golf", "rugby", "cricket", "hockey",
-            "swimming", "cycling", "boxing", "skiing", "surfing", "running",
-            "wrestling", "badminton", "table tennis", "rowing"
-        ]
+        theme_words = sports.get_sports_words()
         theme = "sports"
     return random.choice(theme_words), theme
 
@@ -349,7 +333,6 @@ The theme of this game is {theme}
                 f"""
 No problem, thank you for playing! Hope to see you again soon :)""")
             break
-
 
 
 def play_again():
