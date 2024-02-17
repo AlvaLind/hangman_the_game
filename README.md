@@ -1,32 +1,16 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+#Hangman The Game
 
-Welcome,
+<img src="documentation/responsive-hangman.png" alt="responsiveness of the game">
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+The link to [Hangman The Game]
 
-## Reminders
+Explore Words with Customizable Hangman Themes - Hangman The Game is a python terminal game based on the classic hangman game you used to play when you were younger! Join the excitement, where exploration meets entertainment! With themes like cities, countries, and sports, you'll enjoy:
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+*Engaging Learning: Enhance vocabulary and knowledge about the world.
+*Personalized Challenge: Choose your favorite theme for a tailored experience.
+*Social Fun: Challenge friends and family, sparking conversations and bonding.
+*Mental Stimulation: Exercise strategic thinking and pattern recognition.
+*Endless Entertainment: With diverse themes, boredom is never an option.
 
-## Creating the Heroku app
+Start playing now and let the word adventures begin!
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
