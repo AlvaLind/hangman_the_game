@@ -11,13 +11,25 @@ def clear_terminal():
 def get_player_name():
     """Asks the player to input their name."""
     while True:
-        player_name = input("Please enter player name: \n").strip()
-        if player_name and len(player_name) <= 15:
-            return player_name
-        elif not player_name:
-            print("Name can not be empty")
+        player_name = input(
+            f"""
+Please enter player name:
+(Must contain at least one letter and cannot include special characters)
+""").strip()
+        if not player_name:
+            clear_terminal()
+            print("Name cannot be empty")
+        elif len(player_name) > 15:
+            clear_terminal()
+            print("Name cannot be longer than 15 characters")
+        elif not any(char.isalpha() for char in player_name.replace(' ', '')):
+            clear_terminal()
+            print("Name must contain at least one letter")
+        elif not all(char.isalnum() or char.isspace() for char in player_name):
+            clear_terminal()
+            print("Name cannot contain special characters")
         else:
-            print("Name can not be longer than 15 characters")
+            return player_name
 
 
 def select_theme():
@@ -208,7 +220,7 @@ def printWord(guesses, pickWord):
     return correctLetters
 
 
-print("Welcome to Hangman The Game!\n")
+print("Welcome to Hangman The Game!")
 player_name = get_player_name()
 print("\nHello", player_name, end="!")
 print("\nIf you're feeling lost you can enter '!' at anytime for intructions.")
