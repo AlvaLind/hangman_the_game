@@ -22,35 +22,39 @@ def get_player_name():
 
 def select_theme():
     """Asks the player to select a theme."""
-    print(
-        f"""
+    while True:
+        print(
+            f"""
 Select a game theme:
 ..........................
 1. Countries
 2. Cities
 3. Sports
 ..........................
-        """
-    )
-    while True:
+            """
+        )
         theme_choice = input(
             "Please enter the number of your chosen theme:\n").strip()
         if not theme_choice:
+            clear_terminal()
             print("Choice cannot be empty")
             continue
 
         if theme_choice in ["1", "2", "3"]:
             return theme_choice
         elif theme_choice == "!":
+            clear_terminal()
             instructions.instructions()
         else:
             if len(theme_choice) != 1:
+                clear_terminal()
                 print(
                     f"""
 {theme_choice} has to many characters, please enter only one number
 between 1 and 3 or enter '!' for instructions.
                     """)
             else:
+                clear_terminal()
                 print(
                     f"""
 {theme_choice} is not a valid choice.
@@ -232,6 +236,7 @@ def play_hangman(pickWord):
                 continue
 
             if guessedLetter == '!':
+                clear_terminal()
                 instructions.instructions()
                 create_hangman(incorrect_guesses)
                 correct_letters = printWord(all_letters_guessed, pickWord)
@@ -245,11 +250,11 @@ def play_hangman(pickWord):
                     """)
                 elif guessedLetter.isdigit():
                     print(f"""
-\n {guessedLetter} is a number. Please enter a letter.""")
+{guessedLetter} is a number. Please enter a letter.""")
                 else:
                     print(
                         f"""
-\n{guessedLetter} is not a letter. Please enter a letter.""")
+{guessedLetter} is not a letter. Please enter a letter.""")
                 continue
 
             if guessedLetter in all_letters_guessed:
