@@ -124,7 +124,7 @@ If the player wants to exit the game they can enter no and the terminal will be 
 
 * The user cannot input a empty respons/guess
 
-* The user cannot input a number, except when asked for theme choices. Then number 1,2 and 3 are valid.
+* The user cannot input a number. Except when prompted for theme choices where numbers 1, 2, and 3 are considered valid.
 
 * The user cannot input special characters, except for '!' for instructions.
 
