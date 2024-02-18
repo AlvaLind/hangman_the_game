@@ -1,5 +1,6 @@
 import random
 
+
 def get_sports_words():
     theme_words = [
         "soccer", "basketball", "tennis", "baseball", "volleyball",

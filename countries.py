@@ -1,5 +1,6 @@
 import random
 
+
 def get_countries_words():
     theme_words = [
         "australia", "sweden", "finland", "norway", "denmark",

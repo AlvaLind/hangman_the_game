@@ -1,12 +1,12 @@
 def instructions():
     """
-    Prints the game Instructions 
+    Prints the game Instructions
     """
     print(f"""
 --------------------
 Hangman Instructions
 --------------------
-The objective of the game is to guess the hidden word before the hangman is 
+The objective of the game is to guess the hidden word before the hangman is
 fully drawn.
 
 How to Play:
@@ -18,7 +18,7 @@ How to Play:
 
 Rules:
 - Each guess must be a single letter.
-- Only alphabetic characters are valid guesses. Special characters and numbers 
+- Only alphabetic characters are valid guesses. Special characters and numbers
     will not be accepted.
 
 Good luck and have fun! Let's begin or continue your game below.
