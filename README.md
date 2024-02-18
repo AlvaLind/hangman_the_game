@@ -338,65 +338,75 @@ Due to discrepancies between the validator's output and GitHub's display, I'll p
 
 The project was deployed using Code Institutes mock terminal for Heroku so it can be run as a remote web application.
 
-* Steps for deployment on Heroku:
+**Steps for deployment on Heroku:**
 
 - Clone the repository:
 1. Open a folder on your computer with the terminal.
 1. Execute the following command:
-- `git clone https://github.com/AlvaLind/hangman_the_game/tree/main`
+    `git clone https://github.com/AlvaLind/hangman_the_game/tree/main`
 
 1. Create a GitHub repository to host the code.
 1. Run the command `git remote set-url origin <Your GitHub Repo Path>` to set the remote repository location to your repository.
 
 1. Push the files to your repository with the following command:
   `git push`
-1. Create a Heroku account if you don't already have one here [Heroku](https://dashboard.heroku.com).
-1. Create a new Heroku application on the following page here [New Heroku App](https://dashboard.heroku.com/apps):
+1. If you don't already have a Heroku account you can create one here -> [Heroku](https://dashboard.heroku.com).
+1. Create a new Heroku application on the following page -> [New Heroku App](https://dashboard.heroku.com/apps):
 
 ![New Heroku App](documentation/deployment-1.png)
 
-1. Go to the Deploy tab:
+* Go to the Deploy tab:
 
 ![Deploy Tab](documentation/deployment-2.png)
 
-1. Link your GitHub account and connect the application to the repository you created
+* Link your GitHub account and connect the application to the repository you created
 
 ![Link GitHub account](documentation/deployment-3.png)
 
-1. Go to the Settings tab:
+* Go to the Settings tab:
 
 ![Settings Tab](documentation/deployment-4.png)
 
-1. Click "Add buildpack":
+* Click "Add buildpack":
 
 ![Add Buildpack](documentation/deployment-5.png)
 
-1. Add the Python and Node.js buildpacks in the following order:
+* Add the Python and Node.js buildpacks in the following order:
 
 ![Add Python and Node.js](documentation/deployment-6.png)
 
-1. Click "Reveal Config Vars."
+* Click "Reveal Config Vars."
 
 ![Reveal Config Vars](documentation/deployment-7.png)
 
-1. Add 1 new Config Vars:
-* Key: PORT Value: 8000
-* *This Config was provided by [CODE INSTITUTE](https://codeinstitute.net/)*
+* Add 1 new Config Vars:
+    * Key: PORT Value: 8000
+    * *This Config was provided by [CODE INSTITUTE](https://codeinstitute.net/)*
 
-1. Go back to the Deploy tab:
+* Go back to the Deploy tab:
 
 ![Deploy Tab](documentation/deployment-8.png)
 
-1. Click "Deploy Branch":
+* Click "Deploy Branch":
 
 ![Deploy Branch](documentation/deployment-9.png)
 
-Wait for the completion of the deployment.
+* Wait for the completion of the deployment.
 
 ![Deploying Branch](documentation/deployment-10.png)
 
-1. Click "Open app" to launch the application inside a web page
+* Click "View" to launch the application inside a web page.
 
 ![View Button](documentation/deployment-11.png)
 
+## Credits
 
+* [Heroku](https://dashboard.heroku.com/apps) for hosting the deployment.
+* [Code Institute course material](https://codeinstitute.net/global/) for python structure and function creation. 
+* [Easypythondocs](https://easypythondocs.com/validation.html) for guidance on validating user input.
+* [Stackoverflow](https://stackoverflow.com/questions/49948735/confused-on-a-for-loop-for-a-hangman-game) to help me understand how to iterate through a hidden word and reveal correctly guessed letters.
+* [Lucidchart](https://lucid.app/documents) to create my flowchart for the initial idea.
+
+## Acknowledgements
+
+I am very grateful for the help and support I have gotten from my mentor [Julia Konovalova](https://github.com/IuliiaKonovalova) for this project!
