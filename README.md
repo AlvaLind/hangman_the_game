@@ -60,7 +60,7 @@ If the user enters a letter, special character, or a number greater than 3, or l
 
 **If the user inputs '!' to request instructions** 
 
-When entering '!' a description of how you play the game will be displayed in the terminal. Additionally, the game themes will be listed below, allowing the player to easily return to the game after reading the instructions. The player can access the instructions at any point during the game by entering '!'.
+When entering '!' a description of how you play the game will be displayed in the terminal. Additionally, the game themes will be listed below or their current game continued, allowing the player to easily return to the game after reading the instructions. The player can access the instructions at any point during the game by entering '!'.
 
 ![instructions of the game](documentation/instructions-in-pick_theme.png)
 
