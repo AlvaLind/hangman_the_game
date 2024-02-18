@@ -203,7 +203,7 @@ Please enter player name:
             return player_name
 ```
 
-1. Detailing incorrect user input message.
+2. Detailing incorrect user input message.
 
 * Problem: When the user entered an invalid input when guessing a letter, the terminal displayed a generic error message, which did not specify why the input was deemed incorrect. As a result, the user could end up confused and have difficulty proceeding. This also tends to result in multiple occurrences of the user entering invalid inputs, which pile up in the terminal and are not cleared after each incorrect entry, causing a cluttered terminal and frustrating user experience. 
 
